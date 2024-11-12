@@ -1,5 +1,3 @@
-pip Install folium
-
 import requests
 import csv
 import folium
