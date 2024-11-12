@@ -1,4 +1,4 @@
-pip install folium
+pip Install folium
 
 import requests
 import csv
