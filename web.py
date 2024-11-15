@@ -96,13 +96,6 @@ for place in selected_data:
 # 지도 생성 및 표시
 st_folium(map, height=700, width=1000)
 
-# 자전거도로 버튼 추가
-bike_road_url = ('http://localhost:63342/pythonProject/bycycle.'
-                 'html?_ijt=tfeisvbrjtrn86bssuu874r1hp&_ij_reload=RELOAD_ON_SAVE')
-st.markdown(
-    f'<a href="{bike_road_url}" target="_blank"><button style="background-color:#4CAF50; color:white; padding:10px; border:none; border-radius:4px; cursor:pointer;">자전거도로</button></a>'
-    , unsafe_allow_html=True)
-
 
 # 현재 부산의 날씨 정보를 가져오는 함수
 def get_current_weather():
