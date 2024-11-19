@@ -325,6 +325,5 @@ elif st.session_state.current_page == '추천관광지':
     st.image(image_path, caption="Guide 1", use_column_width=True)
     # 이미지 클릭 시 URL로 이동하는 방법
     st.markdown(f"[여기 클릭하여 경로 보기]({url1})")
-    st.write("관광지 추천도하고 경로도 알려주고 할 예정")
 
     
