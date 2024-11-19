@@ -83,15 +83,16 @@ elif option == '도시공원':
     selected_data = park_data
     icon_type = {'icon': 'tree', 'color': 'green'}
     show_name = True
-else:  # 자전거 보관소
-    selected_data = bike_storage_data
-    icon_type = {'icon': 'lock', 'color': 'red'}
-    show_name = False
 # 병원 추가
 elif option == '종합 병원':  
     selected_data = hospital_data  # 병원 데이터를 사용
     icon_type = {'icon': 'hospital', 'color': 'purple'}  # 병원 아이콘 설정
     show_name = True
+else:  # 자전거 보관소
+    selected_data = bike_storage_data
+    icon_type = {'icon': 'lock', 'color': 'red'}
+    show_name = False
+
 
 # 부산대 위치로 지도의 중심
 map = folium.Map(location=[35.23164602460444, 129.0838577311402], zoom_start=12)
