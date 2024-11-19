@@ -289,8 +289,11 @@ elif st.session_state.current_page == '자전거 위치 정보':
         location = [place['latitude'], place['longitude']]
         
         # Kakao Map 길찾기 URL
-        kakao_directions_url = (f"https://map.kakao.com/link/to/{place['address']},"
-                                f"{place['latitude']},{place['longitude']}")
+        # Kakao Map 길찾기 URL (현재 위치에서 도보 경로로 설정)
+        kakao_directions_url = (f"https://map.kakao.com/link/to/{place['name']},"
+                                f"{place['latitude']},{place['longitude']}"
+                                f"?via={st.session_state.latitude},{st.session_state.longitude}&map_type=1")
+
         
         # 팝업 텍스트 설정
         if show_name and 'name' in place and place['name'] is not None:
