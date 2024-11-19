@@ -315,6 +315,16 @@ elif st.session_state.current_page == '자전거 위치 정보':
 # 화면 3
 elif st.session_state.current_page == '추천관광지':
     st.title("관광지 추천 및 경로")
+    # 이미지 파일 경로 (예시: 'guide1.jpg')
+    image_path = 'guide1.png'
+    # 이동할 URL
+    url1 = 'https://kko.kakao.com/1_de9FgI47'
+
+    # 이미지 클릭 시 URL로 이동하는 방법
+    st.markdown(
+        f'<a href="{url}" target="_blank"><img src="{image_path}" alt="Guide1" style="width:100%; height:auto;" /></a>',
+        unsafe_allow_html=True
+    )
     st.write("관광지 추천도하고 경로도 알려주고 할 예정")
 
     
