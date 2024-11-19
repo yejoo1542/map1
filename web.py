@@ -319,7 +319,10 @@ elif st.session_state.current_page == '추천관광지':
     image_path = 'guide1.jpg'
     # 이동할 URL
     url1 = 'https://kko.kakao.com/1_de9FgI47'
+    image_path = 'guide1.jpg'
 
+    # 이미지 표시
+    st.image(image_path, caption="Guide 1", use_column_width=True)
     # 이미지 클릭 시 URL로 이동하는 방법
     st.markdown(
         f'<a href="{url1}" target="_blank"><img src="{image_path}" alt="Guide1" style="width:100%; height:auto;" /></a>',
