@@ -175,7 +175,7 @@ for place in selected_data:
     location = [place['latitude'], place['longitude']]
     
     folium.PolyLine(
-        locations=[[start_lat, start_lon], location],  # 시작점과 목적지
+        locations=[[35.23164602460444, 129.0838577311402], location],  # 시작점과 목적지
         color="blue", weight=2.5, opacity=1
     ).add_to(map)
 
