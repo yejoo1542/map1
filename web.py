@@ -174,10 +174,7 @@ plugins.LocateControl().add_to(map)
 for place in selected_data:
     location = [place['latitude'], place['longitude']]
     
-    folium.PolyLine(
-        locations=[[35.23164602460444, 129.0838577311402], location],  # 시작점과 목적지
-        color="blue", weight=2.5, opacity=1
-    ).add_to(map)
+    
 
     # Kakao Map directions URL with destination coordinates
     kakao_directions_url = (f"https://map.kakao.com/link/to/{place['address']},"
@@ -197,6 +194,10 @@ for place in selected_data:
                   popup=folium.Popup(popup_text, max_width=300),
                   icon=folium.Icon(icon=icon_type['icon'], color=icon_type['color'],
                                    prefix='fa')).add_to(map)
+    folium.PolyLine(
+        locations=[[35.23164602460444, 129.0838577311402], location],  # 시작점과 목적지
+        color="blue", weight=2.5, opacity=1
+    ).add_to(map)
 
 # 지도 생성 및 표시
 st_folium(map, height=700, width=1000)
