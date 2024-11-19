@@ -33,75 +33,6 @@ st.sidebar.button("메인화면", on_click=lambda: switch_page("메인화면"))
 st.sidebar.button("자전거 위치 정보", on_click=lambda: switch_page("자전거 위치 정보"))
 st.sidebar.button("화면 3", on_click=lambda: switch_page("화면3"))
 
-# 메인 화면
-if st.session_state.current_page == '메인화면':
-    st.title("메인화면")
-    st.write("여기는 메인화면입니다. 원하는 화면을 선택해주세요.")
-
-
-# 자전거 위치 정보 화면
-elif st.session_state.current_page == '자전거 위치 정보':
-    st.title("부산광역시 자전거 위치 정보")
-    st.write("여기에 자전거 관련 정보를 표시합니다.")
-
-    # 보기 옵션 추가
-    option = st.radio("보기 옵션을 선택하세요", ('자전거 대여소', '도시공원', '자전거 보관소', '종합 병원'))
-
-    # 선택에 따라 아이콘 타입 및 팝업 설정
-    if option == '자전거 대여소':
-        selected_data = bike_rental_data
-        icon_type = {'icon': 'bicycle', 'color': 'blue'}
-        show_name = True
-    elif option == '도시공원':
-        selected_data = park_data
-        icon_type = {'icon': 'tree', 'color': 'green'}
-        show_name = True
-    elif option == '종합 병원':  
-        selected_data = hospital_data
-        icon_type = {'icon': 'hospital', 'color': 'purple'}
-        show_name = True
-    else:  # 자전거 보관소
-        selected_data = bike_storage_data
-        icon_type = {'icon': 'lock', 'color': 'red'}
-        show_name = False
-
-    # 지도 생성
-    map = folium.Map(location=[35.23164602460444, 129.0838577311402], zoom_start=12)
-    plugins.LocateControl().add_to(map)
-
-    # 선택된 데이터를 지도에 추가
-    for place in selected_data:
-        location = [place['latitude'], place['longitude']]
-        
-        # Kakao Map 길찾기 URL
-        kakao_directions_url = (f"https://map.kakao.com/link/to/{place['address']},"
-                                f"{place['latitude']},{place['longitude']}")
-        
-        # 팝업 텍스트 설정
-        if show_name and 'name' in place and place['name'] is not None:
-            popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
-                          f"이름: {place['name']}<br>"
-                          f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
-                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
-        else:
-            popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
-                          f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
-                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
-
-        folium.Marker(location,
-                      popup=folium.Popup(popup_text, max_width=300),
-                      icon=folium.Icon(icon=icon_type['icon'], color=icon_type['color'],
-                                       prefix='fa')).add_to(map)
-
-    # 지도 표시
-    st_folium(map, height=700, width=1000)
-
-
-
-# 화면 3
-elif st.session_state.current_page == '화면3':
-    st.title("화면 3")
-    st.write("여기는 화면 3입니다.")
 
 # GPS 위치 가져오기 (JavaScript 삽입)
 gps_html = """
@@ -271,3 +202,75 @@ if good_times:
     st.sidebar.dataframe(df_good_times)
 else:
     st.sidebar.write("앞으로 3일 동안 자전거 타기 좋은 시간이 없습니다.")
+
+
+# 메인 화면
+if st.session_state.current_page == '메인화면':
+    st.title("메인화면")
+    st.write("여기는 메인화면입니다. 원하는 화면을 선택해주세요.")
+
+
+# 자전거 위치 정보 화면
+elif st.session_state.current_page == '자전거 위치 정보':
+    st.title("부산광역시 자전거 위치 정보")
+    st.write("여기에 자전거 관련 정보를 표시합니다.")
+
+    # 보기 옵션 추가
+    option = st.radio("보기 옵션을 선택하세요", ('자전거 대여소', '도시공원', '자전거 보관소', '종합 병원'))
+
+    # 선택에 따라 아이콘 타입 및 팝업 설정
+    if option == '자전거 대여소':
+        selected_data = bike_rental_data
+        icon_type = {'icon': 'bicycle', 'color': 'blue'}
+        show_name = True
+    elif option == '도시공원':
+        selected_data = park_data
+        icon_type = {'icon': 'tree', 'color': 'green'}
+        show_name = True
+    elif option == '종합 병원':  
+        selected_data = hospital_data
+        icon_type = {'icon': 'hospital', 'color': 'purple'}
+        show_name = True
+    else:  # 자전거 보관소
+        selected_data = bike_storage_data
+        icon_type = {'icon': 'lock', 'color': 'red'}
+        show_name = False
+
+    # 지도 생성
+    map = folium.Map(location=[35.23164602460444, 129.0838577311402], zoom_start=12)
+    plugins.LocateControl().add_to(map)
+
+    # 선택된 데이터를 지도에 추가
+    for place in selected_data:
+        location = [place['latitude'], place['longitude']]
+        
+        # Kakao Map 길찾기 URL
+        kakao_directions_url = (f"https://map.kakao.com/link/to/{place['address']},"
+                                f"{place['latitude']},{place['longitude']}")
+        
+        # 팝업 텍스트 설정
+        if show_name and 'name' in place and place['name'] is not None:
+            popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
+                          f"이름: {place['name']}<br>"
+                          f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
+                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
+        else:
+            popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
+                          f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
+                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
+
+        folium.Marker(location,
+                      popup=folium.Popup(popup_text, max_width=300),
+                      icon=folium.Icon(icon=icon_type['icon'], color=icon_type['color'],
+                                       prefix='fa')).add_to(map)
+
+    # 지도 표시
+    st_folium(map, height=700, width=1000)
+
+
+
+# 화면 3
+elif st.session_state.current_page == '화면3':
+    st.title("화면 3")
+    st.write("여기는 화면 3입니다.")
+
