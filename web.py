@@ -221,7 +221,7 @@ elif st.session_state.current_page == '자전거 위치 정보':
 
     # 옵션과 이미지 경로 정의
     option_images = {
-        "자전거 대여소": "111.png",
+        "자전거 대여소": "test1.jpg",
         "도시공원": "222.png",
         "자전거 보관소": "333.png",
         "종합 병원": "444.png",
