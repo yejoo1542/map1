@@ -337,6 +337,13 @@ elif st.session_state.current_page == '추천관광지':
         )    
     
     st.write("kakao_directions_url")
+    st.markdown(f"""
+    <a href="{kakao_directions_url}" target="_blank">
+        <button style="background-color: #FFB81C; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 5px;">
+            🚴 길찾기 (카카오맵)
+        </button>
+    </a>
+""", unsafe_allow_html=True)
 
 
 
