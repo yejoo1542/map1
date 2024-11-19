@@ -317,4 +317,28 @@ elif st.session_state.current_page == '자전거 위치 정보':
 elif st.session_state.current_page == '추천관광지':
     st.title("관광지 추천 및 경로")
     st.write("관광지 추천도하고 경로도 알려주고 할 예정")
+    
+    # 출발지, 경유지, 도착지의 좌표를 설정
+start_lat = 35.2221896  # 출발지 위도 (온천장역북측주차장내)
+start_lon = 129.088057  # 출발지 경도 
+
+waypoint1_lat = 35.205612  # 경유지 1 위도 (동래역)
+waypoint1_lon = 129.078476  # 경유지 1 경도
+
+waypoint2_lat = 35.209233  # 경유지 2 위도 (동래읍성)
+waypoint2_lon = 129.089132  # 경유지 2 경도
+
+end_lat = 35.2221896  # 도착지 위도 (서울)
+end_lon = 129.088057  # 도착지 경도 (서울)
+
+# 카카오맵 경로 URL 생성
+kakao_directions_url = (
+    f"https://map.kakao.com/link/to/{start_lat},{start_lon}?map_type=4&title=출발지"
+    f"&waypoints={waypoint1_lat},{waypoint1_lon}|{waypoint2_lat},{waypoint2_lon}"
+    f"&destination={end_lat},{end_lon}&destination_title=도착지"
+)
+
+# URL 출력
+print(kakao_directions_url)
+
 
