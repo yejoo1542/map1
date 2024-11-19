@@ -316,10 +316,9 @@ elif st.session_state.current_page == '자전거 위치 정보':
 elif st.session_state.current_page == '추천관광지':
     st.title("관광지 추천 및 경로")
     # 이미지 파일 경로 (예시: 'guide1.jpg')
-    image_path = 'guide1.jpg'
+    image_path = 'guide1.png
     # 이동할 URL
     url1 = 'https://kko.kakao.com/1_de9FgI47'
-    image_path = 'guide1.jpg'
 
     # 이미지 표시
     st.image(image_path, caption="Guide 1", use_column_width=True)
