@@ -315,26 +315,23 @@ elif st.session_state.current_page == '자전거 위치 정보':
 # 화면 3
 elif st.session_state.current_page == '추천관광지':
     st.title("관광지 추천 및 경로")
-
-    # URL 설정
+    # URL 정의
     url1 = 'https://kko.kakao.com/1_de9FgI47'
     url2 = 'https://kko.kakao.com/qq3xXZX0XT'
     url3 = 'https://kko.kakao.com/x8368YWDdQ'
 
-    # 3개의 컬럼을 만들어 각각에 이미지와 버튼 배치
-    col1, col2, col3 = st.columns(3)
+    # 이미지와 버튼을 가로로 3개 배치
+    col1, col2, col3 = st.columns([1, 1, 1])  # 컬럼의 비율을 균등하게 설정
 
-    # 첫 번째 컬럼 (지도 1)
+    # 각 컬럼에 이미지와 버튼 배치
     with col1:
-        st.image('guide1.png', caption="지도 1", use_column_width=True)
-        st.markdown(f'<a href="{url1}" target="_blank"><button>지도 1로 이동</button></a>', unsafe_allow_html=True)
+        st.image('guide1.png', caption="지도 1", width=300)  # 이미지 크기 고정
+        st.markdown(f'<a href="{url1}" target="_blank"><button style="width: 200px; height: 50px; font-size: 16px;">지도 1로 이동</button></a>', unsafe_allow_html=True)
 
-    # 두 번째 컬럼 (지도 2)
     with col2:
-        st.image('guide2.png', caption="지도 2", use_column_width=True)
-        st.markdown(f'<a href="{url2}" target="_blank"><button>지도 2로 이동</button></a>', unsafe_allow_html=True)
+        st.image('guide2.png', caption="지도 2", width=300)  # 이미지 크기 고정
+        st.markdown(f'<a href="{url2}" target="_blank"><button style="width: 200px; height: 50px; font-size: 16px;">지도 2로 이동</button></a>', unsafe_allow_html=True)
 
-    # 세 번째 컬럼 (지도 3)
     with col3:
-        st.image('guide3.png', caption="지도 3", use_column_width=True)
-        st.markdown(f'<a href="{url3}" target="_blank"><button>지도 3으로 이동</button></a>', unsafe_allow_html=True)
+        st.image('guide3.png', caption="지도 3", width=300)  # 이미지 크기 고정
+        st.markdown(f'<a href="{url3}" target="_blank"><button style="width: 200px; height: 50px; font-size: 16px;">지도 3으로 이동</button></a>', unsafe_allow_html=True)
