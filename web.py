@@ -216,6 +216,8 @@ if st.session_state.current_page == '메인화면':
 elif st.session_state.current_page == '자전거 위치 정보':
     st.title("부산광역시 자전거 위치 정보")
     st.write("여기에 자전거 관련 정보를 표시합니다.")
+    st.image("111.png", caption="자전거 대여소", use_column_width=True)
+
 
     # 옵션과 이미지 경로 정의
     option_images = {
