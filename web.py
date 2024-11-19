@@ -316,8 +316,7 @@ elif st.session_state.current_page == '자전거 위치 정보':
 # 화면 3
 elif st.session_state.current_page == '추천관광지':
     st.title("관광지 추천 및 경로")
-        
-        # 출발지, 경유지, 도착지의 좌표를 설정
+    # 출발지, 경유지, 도착지 좌표 설정
     start_lat = 35.2221896  # 출발지 위도 (온천장역북측주차장내)
     start_lon = 129.088057  # 출발지 경도 
 
@@ -330,20 +329,22 @@ elif st.session_state.current_page == '추천관광지':
     end_lat = 35.2221896  # 도착지 위도
     end_lon = 129.088057  # 도착지 경도 
 
+    # Kakao Map 길찾기 URL 생성
     kakao_directions_url = (
-            f"https://map.kakao.com/link/to/{start_lat},{start_lon}?map_type=1&title=출발지"
-            f"&waypoints={waypoint1_lat},{waypoint1_lon}|{waypoint2_lat},{waypoint2_lon}"
-            f"&destination={end_lat},{end_lon}&destination_title=도착지"
-        )    
-    
-    st.write("kakao_directions_url")
+        f"https://map.kakao.com/link/to/{start_lat},{start_lon}?map_type=1&title=출발지"
+        f"&waypoints={waypoint1_lat},{waypoint1_lon}|{waypoint2_lat},{waypoint2_lon}"
+        f"&destination={end_lat},{end_lon}&destination_title=도착지"
+    )
+
+# URL을 버튼으로 표시
     st.markdown(f"""
-    <a href="{kakao_directions_url}" target="_blank">
-        <button style="background-color: #FFB81C; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 5px;">
-            🚴 길찾기 (카카오맵)
-        </button>
-    </a>
-""", unsafe_allow_html=True)
+        <a href="{kakao_directions_url}" target="_blank">
+            <button style="background-color: #FFB81C; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 5px;">
+                🚴 길찾기 (카카오맵)
+            </button>
+        </a>
+            """, unsafe_allow_html=True)
+
 
 
 
