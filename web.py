@@ -315,26 +315,26 @@ elif st.session_state.current_page == '자전거 위치 정보':
 # 화면 3
 elif st.session_state.current_page == '추천관광지':
     st.title("관광지 추천 및 경로")
-    # 이미지 파일 경로 (예시: 'guide1.jpg')
-    image_path = 'guide1.png'
-    # 이동할 URL
+
+    # URL 설정
     url1 = 'https://kko.kakao.com/1_de9FgI47'
     url2 = 'https://kko.kakao.com/qq3xXZX0XT'
     url3 = 'https://kko.kakao.com/x8368YWDdQ'
 
+    # 3개의 컬럼을 만들어 각각에 이미지와 버튼 배치
     col1, col2, col3 = st.columns(3)
 
+    # 첫 번째 컬럼 (지도 1)
     with col1:
         st.image('guide1.png', caption="지도 1", use_column_width=True)
-        # 이미지 클릭시 바로 이동할 수 있도록 HTML 링크 사용
         st.markdown(f'<a href="{url1}" target="_blank"><button>지도 1로 이동</button></a>', unsafe_allow_html=True)
 
+    # 두 번째 컬럼 (지도 2)
     with col2:
         st.image('guide2.png', caption="지도 2", use_column_width=True)
         st.markdown(f'<a href="{url2}" target="_blank"><button>지도 2로 이동</button></a>', unsafe_allow_html=True)
 
+    # 세 번째 컬럼 (지도 3)
     with col3:
         st.image('guide3.png', caption="지도 3", use_column_width=True)
         st.markdown(f'<a href="{url3}" target="_blank"><button>지도 3으로 이동</button></a>', unsafe_allow_html=True)
-
-    
