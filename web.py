@@ -335,6 +335,7 @@ kakao_directions_url = (
     f"&destination={end_lat},{end_lon}&destination_title=도착지"
     
     st.write("kakao_directions_url")
+    )
 
 
 
