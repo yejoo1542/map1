@@ -287,32 +287,22 @@ elif st.session_state.current_page == '자전거 위치 정보':
     # 선택된 데이터를 지도에 추가
     for place in selected_data:
         location = [place['latitude'], place['longitude']]
+        
+        # Kakao Map 길찾기 URL
+        kakao_directions_url = (f"https://map.kakao.com/link/to/{place['address']},"
+                                f"{place['latitude']},{place['longitude']}")
+        
+        # 팝업 텍스트 설정
+        if show_name and 'name' in place and place['name'] is not None:
+            popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
+                          f"이름: {place['name']}<br>"
+                          f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
+                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
+        else:
+            popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
+                          f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
+                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
 
-    # Kakao Map 길찾기 URL 생성
-    # 출발지와 도착지 좌표를 정확히 지정
-    start_lat = 35.2221896  # 예시 출발지 위도
-    start_lon = 129.088057  # 예시 출발지 경도
-
-    # 도착지 좌표 (현재는 place에 맞춰 도착지 좌표 설정)
-    end_lat = place['latitude']
-    end_lon = place['longitude']
-
-    # 카카오맵 길찾기 URL 생성
-    kakao_directions_url = (f"https://map.kakao.com/link/to/{place['address']},"
-                            f"{end_lat},{end_lon}?map_type=1&title={place['name']}")
-
-    # 팝업 텍스트 설정
-    if show_name and 'name' in place and place['name'] is not None:
-        popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
-                      f"이름: {place['name']}<br>"
-                      f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
-                      f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
-    else:
-        popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
-                      f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
-                      f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
-
- 
         folium.Marker(location,
                       popup=folium.Popup(popup_text, max_width=300),
                       icon=folium.Icon(icon=icon_type['icon'], color=icon_type['color'],
@@ -326,32 +316,6 @@ elif st.session_state.current_page == '자전거 위치 정보':
 # 화면 3
 elif st.session_state.current_page == '추천관광지':
     st.title("관광지 추천 및 경로")
-    # 출발지, 경유지, 도착지 좌표 설정
-    start_lat = 35.2221896  # 출발지 위도 (온천장역북측주차장내)
-    start_lon = 129.088057  # 출발지 경도 
-
-    waypoint1_lat = 35.205612  # 경유지 1 위도 (동래역)
-    waypoint1_lon = 129.078476  # 경유지 1 경도
-
-    waypoint2_lat = 35.209233  # 경유지 2 위도 (동래읍성)
-    waypoint2_lon = 129.089132  # 경유지 2 경도
-    
-    end_lat = 35.2221896  # 도착지 위도
-    end_lon = 129.088057  # 도착지 경도 
-
-    # 출발지, 경유지, 도착지 URL 형식으로 Kakao Map 링크 생성
-    kakao_directions_url1 = (
-        f"https://map.kakao.com/link/directions/{start_lat},{start_lon},출발지/{end_lat},{end_lon},도착지"
-        f"?via={waypoint1_lat},{waypoint1_lon}&via={waypoint2_lat},{waypoint2_lon}"
-    )
-
-# URL을 버튼으로 표시
-    st.markdown(f"""
-        <a href="{kakao_directions_url1}" target="_blank">
-            <button style="background-color: #FFB81C; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 5px;">
-                🚴 길찾기 (카카오맵)
-            </button>
-        </a>
-        """, unsafe_allow_html=True)
+    st.write("관광지 추천도하고 경로도 알려주고 할 예정")
 
     
