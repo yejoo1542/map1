@@ -212,6 +212,7 @@ if st.session_state.current_page == '메인화면':
     st.image("test1.jpg", caption="이미지 시험 중", use_column_width=True)
 
 
+# 자전거 위치 정보 화면
 elif st.session_state.current_page == '자전거 위치 정보':
     st.title("부산광역시 자전거 위치 정보")
     st.write("여기에 자전거 관련 정보를 표시합니다.")
@@ -224,40 +225,42 @@ elif st.session_state.current_page == '자전거 위치 정보':
         "종합 병원": "444.png",
     }
     
-    # 선택된 옵션 상태 초기화
+    # 선택된 옵션 저장 변수
     if "selected_option" not in st.session_state:
         st.session_state.selected_option = None
-
-    # 이미지 버튼 만들기
+    
     st.write("**보기 옵션을 선택하세요:**")
     cols = st.columns(len(option_images))
-
+    
     for idx, (option, image_path) in enumerate(option_images.items()):
         with cols[idx]:
-            # 선택된 옵션 강조 스타일
+            # CSS 스타일 적용 (선택된 옵션 강조)
             if st.session_state.selected_option == option:
                 border_style = "5px solid red"  # 강조 테두리
             else:
                 border_style = "2px solid transparent"  # 기본 테두리
-            
-            # 클릭 가능한 이미지 버튼
-            if st.button(f"이미지-{option}", key=f"{option}_btn"):
-                st.session_state.selected_option = option
-            
-            # 강조 표시와 이미지 출력
+    
+            # HTML로 이미지와 버튼 생성
             st.markdown(
                 f"""
                 <div style="text-align: center; border: {border_style}; border-radius: 10px; padding: 5px;">
-                    <img src="{image_path}" style="width: 100%; height: auto; cursor: pointer;" alt="{option}">
+                    <img src="{image_path}" style="width: 100%; height: auto;" alt="{option}">
+                    <button onclick="document.querySelector('#{option}').click();" 
+                            style="background-color: white; border: none; cursor: pointer; color: black; font-size: medium;">
+                        {option}
+                    </button>
                 </div>
                 """,
                 unsafe_allow_html=True,
             )
-
-    # 선택된 옵션 표시
+    
+            # 버튼 클릭 이벤트 처리
+            if st.button(option, key=f"{option}_btn"):
+                st.session_state.selected_option = option
+    
+    # 결과 출력
     if st.session_state.selected_option:
         st.write(f"선택한 옵션: **{st.session_state.selected_option}**")
-
 
 
     # 선택에 따라 아이콘 타입 및 팝업 설정
