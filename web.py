@@ -319,10 +319,23 @@ elif st.session_state.current_page == '추천관광지':
     image_path = 'guide1.png'
     # 이동할 URL
     url1 = 'https://kko.kakao.com/1_de9FgI47'
+    url2 = 'https://kko.kakao.com/qq3xXZX0XT'
+    url3 = 'https://kko.kakao.com/x8368YWDdQ'
+    col1, col2, col3 = st.columns(3)
 
-    # 이미지 표시
-    st.image(image_path, caption="Guide 1", use_column_width=True)
-    # 이미지 클릭 시 URL로 이동하는 방법
-    st.markdown(f"[여기 클릭하여 경로 보기]({url1})")
+    with col1:
+        st.image('guide1.png', caption="지도 1", use_column_width=True)
+        if st.button("지도 1", key="btn1"):
+            st.markdown(f"[지도 1로 이동]({url1})")
+
+    with col2:
+        st.image('guide2.png', caption="지도 2", use_column_width=True)
+        if st.button("지도 2", key="btn2"):
+            st.markdown(f"[지도 2로 이동]({url2})")
+
+    with col3:
+        st.image('guide3.png', caption="지도 3", use_column_width=True)
+        if st.button("지도 3", key="btn3"):
+            st.markdown(f"[지도 3으로 이동]({url3})")
 
     
