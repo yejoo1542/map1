@@ -8,6 +8,9 @@ from datetime import datetime, timedelta
 import pandas as pd
 
 
+# Streamlit 페이지 설정 (파일 맨 위에서 선언)
+st.set_page_config(page_title="자전거123", page_icon='🚴', layout="wide")
+
 # 세션 상태 초기화
 if 'current_page' not in st.session_state:
     st.session_state.current_page = '메인화면'
@@ -27,7 +30,15 @@ if st.session_state.current_page == '메인화면':
     st.title("메인화면")
     st.write("여기는 메인화면입니다. 원하는 화면을 선택해주세요.")
 
-elif st.set_page_config(page_title="자전거123", page_icon='burgundy-bicycle.png')
+# 자전거 위치 정보 화면
+elif st.session_state.current_page == '자전거 위치 정보':
+    st.title("부산광역시 자전거 위치 정보")
+    st.write("여기에 자전거 관련 정보를 표시합니다.")
+
+# 화면 3
+elif st.session_state.current_page == '화면3':
+    st.title("화면 3")
+    st.write("여기는 화면 3입니다.")
 
 # CSV 데이터 로드
 bike_rental_data = []
@@ -143,10 +154,6 @@ for place in selected_data:
 # 지도 생성 및 표시
 st_folium(map, height=700, width=1000)
 
-# 화면 3
-elif st.session_state.current_page == '화면3':
-    st.title("화면 3")
-    st.write("여기는 화면 3입니다.")
 
 # 현재 부산의 날씨 정보를 가져오는 함수
 def get_current_weather():
