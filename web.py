@@ -7,7 +7,7 @@ from folium import plugins
 from datetime import datetime, timedelta
 import pandas as pd
 
-st.set_page_config(page_title="자전거", page_icon='burgundy-bicycle.png')
+st.set_page_config(page_title="자전거23", page_icon='burgundy-bicycle.png')
 
 # CSV 데이터 로드
 bike_rental_data = []
