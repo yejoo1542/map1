@@ -287,22 +287,32 @@ elif st.session_state.current_page == '자전거 위치 정보':
     # 선택된 데이터를 지도에 추가
     for place in selected_data:
         location = [place['latitude'], place['longitude']]
-        
-        # Kakao Map 길찾기 URL
-        kakao_directions_url = (f"https://map.kakao.com/link/to/{place['address']},"
-                                f"{place['latitude']},{place['longitude']}")
-        
-        # 팝업 텍스트 설정
-        if show_name and 'name' in place and place['name'] is not None:
-            popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
-                          f"이름: {place['name']}<br>"
-                          f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
-                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
-        else:
-            popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
-                          f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
-                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
 
+    # Kakao Map 길찾기 URL 생성
+    # 출발지와 도착지 좌표를 정확히 지정
+    start_lat = 35.2221896  # 예시 출발지 위도
+    start_lon = 129.088057  # 예시 출발지 경도
+
+    # 도착지 좌표 (현재는 place에 맞춰 도착지 좌표 설정)
+    end_lat = place['latitude']
+    end_lon = place['longitude']
+
+    # 카카오맵 길찾기 URL 생성
+    kakao_directions_url = (f"https://map.kakao.com/link/to/{place['address']},"
+                            f"{end_lat},{end_lon}?map_type=1&title={place['name']}")
+
+    # 팝업 텍스트 설정
+    if show_name and 'name' in place and place['name'] is not None:
+        popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
+                      f"이름: {place['name']}<br>"
+                      f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
+                      f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
+    else:
+        popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
+                      f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
+                      f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
+
+ 
         folium.Marker(location,
                       popup=folium.Popup(popup_text, max_width=300),
                       icon=folium.Icon(icon=icon_type['icon'], color=icon_type['color'],
