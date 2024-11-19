@@ -51,7 +51,7 @@ with open('자전거 보관소 데이터_filltered.csv', newline='', encoding='U
 hospital_data = []
 
 # CSV 파일 열기
-with open('부산광역시_종합병원 현황_20230927.csv', newline='', encoding='ISO-8859-1') as csvfile:
+with open('부산광역시_종합병원 현황_20230927.csv', newline='', encoding='UTF-16') as csvfile:
     reader = csv.reader(csvfile)
     next(reader)  # 첫 번째 행(헤더) 건너뛰기
     
