@@ -82,30 +82,6 @@ if "latitude" in msg and "longitude" in msg:
     st.session_state.latitude = msg["latitude"][0]
     st.session_state.longitude = msg["longitude"][0]
 
-# 지도 생성 및 표시 (중심 유지 기능 추가)
-if 'zoom_level' not in st.session_state:
-    st.session_state.zoom_level = 12  # 초기 줌 레벨 설정
-
-if st.session_state.latitude and st.session_state.longitude:
-    # 사용자가 위치를 업데이트한 경우, 중심 변경
-    map = folium.Map(location=[float(st.session_state.latitude), float(st.session_state.longitude)], 
-                     zoom_start=st.session_state.zoom_level)
-else:
-    # 초기 지도는 부산대 중심
-    map = folium.Map(location=[35.23164602460444, 129.0838577311402], 
-                     zoom_start=st.session_state.zoom_level)
-
-plugins.LocateControl().add_to(map)
-
-# 지도 데이터 렌더링
-st_data = st_folium(map, height=700, width=1000)
-
-# 현재 줌 레벨 및 중심 업데이트 (지도 이동 후 반영)
-if st_data and 'zoom' in st_data:
-    if st_data['zoom'] is not None:
-        st.session_state.zoom_level = st_data['zoom']
-else:
-    st.warning("지도를 로드하는 동안 문제가 발생했습니다. 다시 시도해 주세요.")
 
 
 # CSV 데이터 로드
@@ -224,6 +200,27 @@ for place in selected_data:
 # 지도 생성 및 표시
 st_folium(map, height=700, width=1000)
 
+# 지도 생성 및 표시 (중심 유지 기능 추가)
+if 'zoom_level' not in st.session_state:
+    st.session_state.zoom_level = 12  # 초기 줌 레벨 설정
+
+if st.session_state.latitude and st.session_state.longitude:
+    # 사용자가 위치를 업데이트한 경우, 중심 변경
+    map = folium.Map(location=[float(st.session_state.latitude), float(st.session_state.longitude)], 
+                     zoom_start=st.session_state.zoom_level)
+else:
+    # 초기 지도는 부산대 중심
+    map = folium.Map(location=[35.23164602460444, 129.0838577311402], 
+                     zoom_start=st.session_state.zoom_level)
+
+plugins.LocateControl().add_to(map)
+
+# 현재 줌 레벨 및 중심 업데이트 (지도 이동 후 반영)
+if st_data and 'zoom' in st_data:
+    if st_data['zoom'] is not None:
+        st.session_state.zoom_level = st_data['zoom']
+else:
+    st.warning("지도를 로드하는 동안 문제가 발생했습니다. 다시 시도해 주세요.")
 
 # 현재 부산의 날씨 정보를 가져오는 함수
 def get_current_weather():
