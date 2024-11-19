@@ -220,10 +220,10 @@ elif st.session_state.current_page == '자전거 위치 정보':
 
         # 이미지 경로를 절대 경로로 변환    
     option_images = {
-        "자전거 대여소": os.path.abspath("111.png"),
-        "도시공원": os.path.abspath("222.png"),
-        "자전거 보관소": os.path.abspath("333.png"),
-        "종합 병원": os.path.abspath("444.png"),
+        "자전거 대여소": "111.png",
+        "도시공원":  "222.png",
+        "자전거 보관소":  "333.png",
+        "종합 병원":  "444.png",
     }
     
     # 선택된 옵션 저장 변수
@@ -245,7 +245,7 @@ elif st.session_state.current_page == '자전거 위치 정보':
             st.markdown(
                 f"""
                 <div style="text-align: center; border: {border_style}; border-radius: 10px; padding: 5px;">
-                    <img src="file://{image_path}" style="width: 100%; height: auto;" alt="{option}">
+                    <img src="{image_path}" style="width: 100%; height: auto;" alt="{option}">
                     <p>{option}</p>
                 </div>
                 """,
