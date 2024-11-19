@@ -325,15 +325,14 @@ elif st.session_state.current_page == '추천관광지':
 
     waypoint2_lat = 35.209233  # 경유지 2 위도 (동래읍성)
     waypoint2_lon = 129.089132  # 경유지 2 경도
-
+    
     end_lat = 35.2221896  # 도착지 위도
     end_lon = 129.088057  # 도착지 경도 
 
-    # Kakao Map 길찾기 URL 생성
+    # 출발지, 경유지, 도착지 URL 형식으로 Kakao Map 링크 생성
     kakao_directions_url = (
-        f"https://map.kakao.com/link/to/{start_lat},{start_lon}?map_type=1&title=출발지"
-        f"&waypoints={waypoint1_lat},{waypoint1_lon}|{waypoint2_lat},{waypoint2_lon}"
-        f"&destination={end_lat},{end_lon}&destination_title=도착지"
+        f"https://map.kakao.com/link/directions/{start_lat},{start_lon},출발지/{end_lat},{end_lon},도착지"
+        f"?via={waypoint1_lat},{waypoint1_lon}&via={waypoint2_lat},{waypoint2_lon}"
     )
 
 # URL을 버튼으로 표시
@@ -343,9 +342,6 @@ elif st.session_state.current_page == '추천관광지':
                 🚴 길찾기 (카카오맵)
             </button>
         </a>
-            """, unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
 
-
-
-
-
+    
