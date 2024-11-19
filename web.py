@@ -185,6 +185,20 @@ for place in selected_data:
                   icon=folium.Icon(icon=icon_type['icon'], color=icon_type['color'],
                                    prefix='fa')).add_to(map)
 
+    folium.Marker(location,
+                     path_coordinates = [
+                         [35.23164602460444, 129.0838577311402],  # 시작점
+                        
+                         [place['latitude'], place['longitude'],  # 끝점
+                     ]
+                  AntPath(locations=path_coordinates, color='blue', weight=4).add_to(map)
+
+                  popup=folium.Popup(popup_text, max_width=300),
+                  icon=folium.Icon(icon=icon_type['icon'], color=icon_type['color'],
+                                   prefix='fa')).add_to(map)
+
+
+
 # 지도 생성 및 표시
 st_folium(map, height=700, width=1000)
 
