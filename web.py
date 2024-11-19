@@ -208,6 +208,8 @@ else:
 if st.session_state.current_page == '메인화면':
     st.title("메인화면")
     st.write("페달이 소개랑 사진 등등이 들어갈 화면입니다~")
+    # 이미지 경로와 설명
+    st.image("test1.jpg", caption="이미지 시험 중", use_column_width=True)
 
 
 # 자전거 위치 정보 화면
