@@ -316,7 +316,7 @@ elif st.session_state.current_page == '자전거 위치 정보':
 elif st.session_state.current_page == '추천관광지':
     st.title("관광지 추천 및 경로")
     # 이미지 파일 경로 (예시: 'guide1.jpg')
-    image_path = 'guide1.png'
+    image_path = 'guide1.jpg'
     # 이동할 URL
     url1 = 'https://kko.kakao.com/1_de9FgI47'
 
