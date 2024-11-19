@@ -36,6 +36,39 @@ st.sidebar.button("자전거 위치 정보", on_click=lambda: switch_page("자�
 st.sidebar.button("추천관광지", on_click=lambda: switch_page("추천관광지"))
 
 
+# GPS 위치 가져오기 (JavaScript 삽입)
+gps_html = """
+<script>
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            window.parent.postMessage({ latitude: latitude, longitude: longitude }, "*");
+        },
+        (error) => {
+            console.error("Error getting location:", error);
+            window.parent.postMessage({ error: "Unable to fetch location." }, "*");
+        }
+    );
+</script>
+"""
+components.html(gps_html, height=0, width=0)
+
+    # 현재 위치 추가
+if st.session_state.latitude and st.session_state.longitude:
+    folium.Marker(
+        [float(st.session_state.latitude), float(st.session_state.longitude)],
+        popup="📍 내 위치",
+        icon=folium.Icon(color="red", icon="info-sign")
+    ).add_to(map)
+
+
+# JavaScript에서 위치 정보를 가져오는 콜백
+msg = st.experimental_get_query_params()
+if "latitude" in msg and "longitude" in msg:
+    st.session_state.latitude = msg["latitude"][0]
+    st.session_state.longitude = msg["longitude"][0]
+
 
 
 # CSV 데이터 로드
@@ -249,41 +282,6 @@ elif st.session_state.current_page == '자전거 위치 정보':
                           f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
                           f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
 
-        # GPS 위치 가져오기 (JavaScript 삽입)
-        gps_html = """
-        <script>
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-                    window.parent.postMessage({ latitude: latitude, longitude: longitude }, "*");
-                },
-                (error) => {
-                    console.error("Error getting location:", error);
-                    window.parent.postMessage({ error: "Unable to fetch location." }, "*");
-                }
-            );
-        </script>
-        """
-        components.html(gps_html, height=0, width=0)
-
-        # JavaScript에서 위치 정보를 가져오는 콜백
-        msg = st.experimental_get_query_params()
-        if "latitude" in msg and "longitude" in msg:
-            st.session_state.latitude = msg["latitude"][0]
-            st.session_state.longitude = msg["longitude"][0]
-        # 내 위치 마커 추가
-        if st.session_state.latitude and st.session_state.longitude:
-            folium.Marker(
-                [float(st.session_state.latitude), float(st.session_state.longitude)],
-                popup="📍 내 위치",
-                icon=folium.Icon(color="red", icon="info-sign")
-            ).add_to(map)
-
-        # 모든 마커가 포함된 경계값 계산하여 지도 범위 자동 조정
-        locations = [(float(st.session_state.latitude), float(st.session_state.longitude))]
-        locations.extend([(place['latitude'], place['longitude']) for place in bike_rental_data])
-        map.fit_bounds(locations)
         folium.Marker(location,
                       popup=folium.Popup(popup_text, max_width=300),
                       icon=folium.Icon(icon=icon_type['icon'], color=icon_type['color'],
