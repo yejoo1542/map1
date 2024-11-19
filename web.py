@@ -240,18 +240,18 @@ elif st.session_state.current_page == '자전거 위치 정보':
     selected_option = list(option_images.keys())[selected_option_index]
 
     # 선택된 옵션에 대한 정보 출력
-    st.write(f"선택한 옵션: **{option}**")
+    st.write(f"선택한 옵션: **{selected_option}**")
 
-    # 선택에 따라 아이콘 타입 및 팝업 설정
-    if option == '자전거 대여소':
+    # 데이터 로드 (각각의 데이터는 이미 파일에서 로드되어 있음)
+    if selected_option == '자전거 대여소':
         selected_data = bike_rental_data
         icon_type = {'icon': 'bicycle', 'color': 'blue'}
         show_name = True
-    elif option == '도시공원':
+    elif selected_option == '도시공원':
         selected_data = park_data
         icon_type = {'icon': 'tree', 'color': 'green'}
         show_name = True
-    elif option == '종합 병원':  
+    elif selected_option == '종합 병원':
         selected_data = hospital_data
         icon_type = {'icon': 'hospital', 'color': 'purple'}
         show_name = True
@@ -267,11 +267,10 @@ elif st.session_state.current_page == '자전거 위치 정보':
     # 선택된 데이터를 지도에 추가
     for place in selected_data:
         location = [place['latitude'], place['longitude']]
-        
+
         kakao_directions_url = (f"https://map.kakao.com/link/to/{place['address']},"
                                 f"{place['latitude']},{place['longitude']}")
 
-                
         # 팝업 텍스트 설정
         if show_name and 'name' in place and place['name'] is not None:
             popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
