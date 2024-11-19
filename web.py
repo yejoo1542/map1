@@ -6,7 +6,7 @@ from streamlit_folium import st_folium
 from folium import plugins
 from datetime import datetime, timedelta
 import pandas as pd
-
+import streamlit.components.v1 as components
 
 # Streamlit 페이지 설정 (파일 맨 위에서 선언)
 st.set_page_config(page_title="자전거123", page_icon='🚴', layout="wide")
