@@ -15,6 +15,14 @@ st.set_page_config(page_title="자전거123", page_icon='🚴', layout="wide")
 if 'current_page' not in st.session_state:
     st.session_state.current_page = '메인화면'
 
+
+# 위치 경도위도 초기화
+if 'latitude' not in st.session_state:
+    st.session_state.latitude = None
+if 'longitude' not in st.session_state:
+    st.session_state.longitude = None
+
+
 # 페이지 전환 함수
 def switch_page(page_name):
     st.session_state.current_page = page_name
