@@ -316,6 +316,7 @@ elif st.session_state.current_page == '자전거 위치 정보':
 # 화면 3
 elif st.session_state.current_page == '추천관광지':
     st.title("관광지 추천 및 경로")
+        
         # 출발지, 경유지, 도착지의 좌표를 설정
 start_lat = 35.2221896  # 출발지 위도 (온천장역북측주차장내)
 start_lon = 129.088057  # 출발지 경도 
@@ -334,6 +335,7 @@ kakao_directions_url = (
     f"&waypoints={waypoint1_lat},{waypoint1_lon}|{waypoint2_lat},{waypoint2_lon}"
     f"&destination={end_lat},{end_lon}&destination_title=도착지"
     )
+    
     st.write("kakao_directions_url")
 
 
