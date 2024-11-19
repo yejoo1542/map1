@@ -325,13 +325,13 @@ elif st.session_state.current_page == '추천관광지':
 
     # 각 컬럼에 이미지와 버튼 배치
     with col1:
-        st.image('guide1.png', caption="지도 1", width=300)  # 이미지 크기 고정
+        st.image('guide1.png', caption="지도 1", use_column_width=True)  # 이미지 크기 고정
         st.markdown(f'<a href="{url1}" target="_blank"><button style="width: 200px; height: 50px; font-size: 16px;">지도 1로 이동</button></a>', unsafe_allow_html=True)
 
     with col2:
-        st.image('guide2.png', caption="지도 2", width=300)  # 이미지 크기 고정
+        st.image('guide2.png', caption="지도 2", use_column_width=True)  # 이미지 크기 고정
         st.markdown(f'<a href="{url2}" target="_blank"><button style="width: 200px; height: 50px; font-size: 16px;">지도 2로 이동</button></a>', unsafe_allow_html=True)
 
     with col3:
-        st.image('guide3.png', caption="지도 3", width=300)  # 이미지 크기 고정
+        st.image('guide3.png', caption="지도 3", use_column_width=True)  # 이미지 크기 고정
         st.markdown(f'<a href="{url3}" target="_blank"><button style="width: 200px; height: 50px; font-size: 16px;">지도 3으로 이동</button></a>', unsafe_allow_html=True)
