@@ -9,7 +9,7 @@ import pandas as pd
 import streamlit.components.v1 as components
 
 # Streamlit 페이지 설정 (파일 맨 위에서 선언)
-st.set_page_config(page_title="자전거123", page_icon='🚴', layout="wide")
+st.set_page_config(page_title="자전거", page_icon='🚴', layout="wide")
 
 # 세션 상태 초기화
 if 'current_page' not in st.session_state:
@@ -31,7 +31,7 @@ def switch_page(page_name):
 st.sidebar.title("페이지 선택")
 st.sidebar.button("메인화면", on_click=lambda: switch_page("메인화면"))
 st.sidebar.button("자전거 위치 정보", on_click=lambda: switch_page("자전거 위치 정보"))
-st.sidebar.button("화면 3", on_click=lambda: switch_page("화면3"))
+st.sidebar.button("추천관광지", on_click=lambda: switch_page("추천관광지"))
 
 
 # GPS 위치 가져오기 (JavaScript 삽입)
@@ -207,7 +207,7 @@ else:
 # 메인 화면
 if st.session_state.current_page == '메인화면':
     st.title("메인화면")
-    st.write("여기는 메인화면입니다. 원하는 화면을 선택해주세요.")
+    st.write("페달이 소개랑 사진 등등이 들어갈 화면입니다~")
 
 
 # 자전거 위치 정보 화면
@@ -270,7 +270,7 @@ elif st.session_state.current_page == '자전거 위치 정보':
 
 
 # 화면 3
-elif st.session_state.current_page == '화면3':
-    st.title("화면 3")
-    st.write("여기는 화면 3입니다.")
+elif st.session_state.current_page == '추천관광지':
+    st.title("관광지 추천 및 경로")
+    st.write("관광지 추천도하고 경로도 알려주고 할 예정")
 
