@@ -330,14 +330,14 @@ elif st.session_state.current_page == '추천관광지':
     end_lon = 129.088057  # 도착지 경도 
 
     # 출발지, 경유지, 도착지 URL 형식으로 Kakao Map 링크 생성
-    kakao_directions_url = (
+    kakao_directions_url1 = (
         f"https://map.kakao.com/link/directions/{start_lat},{start_lon},출발지/{end_lat},{end_lon},도착지"
         f"?via={waypoint1_lat},{waypoint1_lon}&via={waypoint2_lat},{waypoint2_lon}"
     )
 
 # URL을 버튼으로 표시
     st.markdown(f"""
-        <a href="{kakao_directions_url}" target="_blank">
+        <a href="{kakao_directions_url1}" target="_blank">
             <button style="background-color: #FFB81C; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 5px;">
                 🚴 길찾기 (카카오맵)
             </button>
