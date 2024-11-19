@@ -97,10 +97,16 @@ else:
 
 plugins.LocateControl().add_to(map)
 
+# 지도 데이터 렌더링
+st_data = st_folium(map, height=700, width=1000)
 
 # 현재 줌 레벨 및 중심 업데이트 (지도 이동 후 반영)
-if st_data['zoom'] is not None:
-    st.session_state.zoom_level = st_data['zoom']
+if st_data and 'zoom' in st_data:
+    if st_data['zoom'] is not None:
+        st.session_state.zoom_level = st_data['zoom']
+else:
+    st.warning("지도를 로드하는 동안 문제가 발생했습니다. 다시 시도해 주세요.")
+
 
 # CSV 데이터 로드
 bike_rental_data = []
