@@ -3,4 +3,3 @@ streamlit
 pandas
 streamlit_folium
 streamlit_image_select
-streamlit.components.v1
