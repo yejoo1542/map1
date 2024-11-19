@@ -218,10 +218,6 @@ elif st.session_state.current_page == '자전거 위치 정보':
     st.title("부산광역시 자전거 위치 정보")
     st.write("여기에 자전거 관련 정보를 표시합니다.")
 
-# 자전거 위치 정보 화면 수정
-elif st.session_state.current_page == '자전거 위치 정보':
-    st.title("부산광역시 자전거 위치 정보")
-    st.write("여기에 자전거 관련 정보를 표시합니다.")
 
     # 이미지 선택 옵션과 관련된 데이터
     option_images = {
@@ -244,7 +240,7 @@ elif st.session_state.current_page == '자전거 위치 정보':
     selected_option = list(option_images.keys())[selected_option_index]
 
     # 선택된 옵션에 대한 정보 출력
-    st.write(f"선택한 옵션: **{selected_option}**")
+    st.write(f"선택한 옵션: **{option}**")
 
     # 선택에 따라 아이콘 타입 및 팝업 설정
     if option == '자전거 대여소':
