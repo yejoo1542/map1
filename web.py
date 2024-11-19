@@ -38,10 +38,6 @@ if st.session_state.current_page == '메인화면':
     st.title("메인화면")
     st.write("여기는 메인화면입니다. 원하는 화면을 선택해주세요.")
 
-# 자전거 위치 정보 화면
-elif st.session_state.current_page == '자전거 위치 정보':
-    st.title("부산광역시 자전거 위치 정보")
-    st.write("여기에 자전거 관련 정보를 표시합니다.")
 
 # 화면 3
 elif st.session_state.current_page == '화면3':
