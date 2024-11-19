@@ -333,9 +333,9 @@ kakao_directions_url = (
     f"https://map.kakao.com/link/to/{start_lat},{start_lon}?map_type=4&title=출발지"
     f"&waypoints={waypoint1_lat},{waypoint1_lon}|{waypoint2_lat},{waypoint2_lon}"
     f"&destination={end_lat},{end_lon}&destination_title=도착지"
-    
-    st.write("kakao_directions_url")
     )
+    st.write("kakao_directions_url")
+
 
 
 
