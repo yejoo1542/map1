@@ -48,10 +48,31 @@ with open('자전거 보관소 데이터_filltered.csv', newline='', encoding='U
         }
         bike_storage_data.append(entry)
 
+hospital_data = []
+
+# CSV 파일 열기
+with open('부산광역시_종합병원 현황_20230927.csv', newline='', encoding='UTF-8') as csvfile:
+    reader = csv.reader(csvfile)
+    next(reader)  # 첫 번째 행(헤더) 건너뛰기
+    
+    # 각 행을 반복하면서 데이터 파싱
+    for row in reader:
+        # 데이터 딕셔너리 생성
+        entry = {
+            'name': row[1],  # 의료기관명
+            'address': row[2],  # 도로명주소
+            'latitude': float(row[3]),  # 위도
+            'longitude': float(row[4]),  # 경도
+            'phone': row[5]  # 전화번호
+        }
+        # 리스트에 추가
+        hospital_data.append(entry)
+
+
 st.header("부산광역시 자전거 위치정보")
 
 # 버튼 추가
-option = st.radio("보기 옵션을 선택하세요", ('자전거 대여소', '도시공원', '자전거 보관소'))
+option = st.radio("보기 옵션을 선택하세요", ('자전거 대여소', '도시공원', '자전거 보관소','종합 병원'))
 
 # 선택에 따라 아이콘 타입 및 팝업 설정
 if option == '자전거 대여소':
@@ -66,6 +87,11 @@ else:  # 자전거 보관소
     selected_data = bike_storage_data
     icon_type = {'icon': 'lock', 'color': 'red'}
     show_name = False
+# 병원 추가
+elif option == '종합 병원':  
+    selected_data = hospital_data  # 병원 데이터를 사용
+    icon_type = {'icon': 'hospital', 'color': 'purple'}  # 병원 아이콘 설정
+    show_name = True
 
 # 부산대 위치로 지도의 중심
 map = folium.Map(location=[35.23164602460444, 129.0838577311402], zoom_start=12)
