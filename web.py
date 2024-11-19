@@ -173,6 +173,11 @@ plugins.LocateControl().add_to(map)
 
 for place in selected_data:
     location = [place['latitude'], place['longitude']]
+    
+    folium.PolyLine(
+        locations=[[start_lat, start_lon], location],  # 시작점과 목적지
+        color="blue", weight=2.5, opacity=1
+    ).add_to(map)
 
     # Kakao Map directions URL with destination coordinates
     kakao_directions_url = (f"https://map.kakao.com/link/to/{place['address']},"
