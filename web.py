@@ -321,21 +321,20 @@ elif st.session_state.current_page == '추천관광지':
     url1 = 'https://kko.kakao.com/1_de9FgI47'
     url2 = 'https://kko.kakao.com/qq3xXZX0XT'
     url3 = 'https://kko.kakao.com/x8368YWDdQ'
+
     col1, col2, col3 = st.columns(3)
 
     with col1:
         st.image('guide1.png', caption="지도 1", use_column_width=True)
-        if st.button("지도 1", key="btn1"):
-            st.markdown(f"[지도 1로 이동]({url1})")
+        # 이미지 클릭시 바로 이동할 수 있도록 HTML 링크 사용
+        st.markdown(f'<a href="{url1}" target="_blank"><button>지도 1로 이동</button></a>', unsafe_allow_html=True)
 
     with col2:
         st.image('guide2.png', caption="지도 2", use_column_width=True)
-        if st.button("지도 2", key="btn2"):
-            st.markdown(f"[지도 2로 이동]({url2})")
+        st.markdown(f'<a href="{url2}" target="_blank"><button>지도 2로 이동</button></a>', unsafe_allow_html=True)
 
     with col3:
         st.image('guide3.png', caption="지도 3", use_column_width=True)
-        if st.button("지도 3", key="btn3"):
-            st.markdown(f"[지도 3으로 이동]({url3})")
+        st.markdown(f'<a href="{url3}" target="_blank"><button>지도 3으로 이동</button></a>', unsafe_allow_html=True)
 
     
