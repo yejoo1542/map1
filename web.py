@@ -40,6 +40,40 @@ elif st.session_state.current_page == '화면3':
     st.title("화면 3")
     st.write("여기는 화면 3입니다.")
 
+# GPS 위치 가져오기 (JavaScript 삽입)
+gps_html = """
+<script>
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            window.parent.postMessage({ latitude: latitude, longitude: longitude }, "*");
+        },
+        (error) => {
+            console.error("Error getting location:", error);
+            window.parent.postMessage({ error: "Unable to fetch location." }, "*");
+        }
+    );
+</script>
+"""
+components.html(gps_html, height=0, width=0)
+
+    # 현재 위치 추가
+    if st.session_state.latitude and st.session_state.longitude:
+        folium.Marker(
+            [float(st.session_state.latitude), float(st.session_state.longitude)],
+            popup="📍 내 위치",
+            icon=folium.Icon(color="red", icon="info-sign")
+        ).add_to(map)
+
+
+
+# JavaScript에서 위치 정보를 가져오는 콜백
+msg = st.experimental_get_query_params()
+if "latitude" in msg and "longitude" in msg:
+    st.session_state.latitude = msg["latitude"][0]
+    st.session_state.longitude = msg["longitude"][0]
+
 # CSV 데이터 로드
 bike_rental_data = []
 with open('부산광역시_자전거대여소_20230822.csv', newline='', encoding='UTF-8') as csvfile:
