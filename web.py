@@ -59,11 +59,11 @@ with open('부산광역시_종합병원 현황_20230927.csv', newline='', encodi
     for row in reader:
         # 데이터 딕셔너리 생성
         entry = {
-            'name': row[2],  # 의료기관명
-            'address': row[4],  # 도로명주소
-            'latitude': float(row[5]),  # 위도
-            'longitude': float(row[6]),  # 경도
-            'phone': row[7]  # 전화번호
+            'name': row[1],  # 의료기관명
+            'address': row[3],  # 도로명주소
+            'latitude': float(row[4]),  # 위도
+            'longitude': float(row[5]),  # 경도
+            'phone': row[6]  # 전화번호
         }
         # 리스트에 추가
         hospital_data.append(entry)
