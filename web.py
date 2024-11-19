@@ -218,13 +218,13 @@ elif st.session_state.current_page == '자전거 위치 정보':
     st.title("부산광역시 자전거 위치 정보")
     st.write("여기에 자전거 관련 정보를 표시합니다.")
 
-
-    # 이미지 경로랑 연계
+    
+      # 이미지와 옵션 정의
     option_images = {
-        "자전거 대여소": os.path.abspath("111.png"),
-        "도시공원": os.path.abspath("222.png"),
-        "자전거 보관소": os.path.abspath("333.png"),
-        "종합 병원": os.path.abspath("444.png"),
+        "자전거 대여소": "111.png",
+        "도시공원": "222.png",
+        "자전거 보관소": "333.png",
+        "종합 병원": "444.png",
     }
     
     # 선택된 옵션 저장 변수
@@ -236,23 +236,18 @@ elif st.session_state.current_page == '자전거 위치 정보':
     
     for idx, (option, image_path) in enumerate(option_images.items()):
         with cols[idx]:
-            # CSS 스타일 적용 (선택된 옵션 강조)
-            if st.session_state.selected_option == option:
-                border_style = "5px solid red"  # 강조 테두리
-            else:
-                border_style = "2px solid transparent"  # 기본 테두리
-    
-            # HTML로 이미지 생성
-            st.markdown(
-                f"""
-                <div style="text-align: center; border: {border_style}; border-radius: 10px; padding: 5px;">
-                    <img src="file://{image_path}" style="width: 100%; height: auto;" alt="{option}">
-                    <p>{option}</p>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
+            # 이미지 표시
+            if st.button(option, key=f"{option}_btn"):
+                st.session_state.selected_option = option
             
+            # 선택된 옵션 강조 테두리
+            if st.session_state.selected_option == option:
+                st.image(image_path, caption=option, use_column_width=True, output_format="auto", 
+                         channels="RGB", style="border: 5px solid red; border-radius: 10px;")
+            else:
+                st.image(image_path, caption=option, use_column_width=True, output_format="auto", 
+                         channels="RGB", style="border: 2px solid transparent; border-radius: 10px;")
+
             # 버튼 클릭 이벤트 처리
             if st.button(option, key=f"{option}_btn"):
                 st.session_state.selected_option = option
