@@ -319,7 +319,7 @@ elif st.session_state.current_page == '추천관광지':
             .container {
                 display: flex;
                 align-items: center;
-                gap: 20px;
+                gap: 200px;
                 transition: all 0.3s ease;
             }
             .icon {
@@ -407,7 +407,7 @@ elif st.session_state.current_page == '추천관광지':
     """
     
     # Streamlit 앱에서 HTML 코드 렌더링
-    st.components.v1.html(html_code, height=600)
+    st.components.v2.html(html_code, height=600)
 
 
     
