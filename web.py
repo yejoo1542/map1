@@ -344,7 +344,7 @@ col1, col2, col3 = st.columns([1, 1, 1])
 # 컬럼별 이미지와 버튼 추가
 with col1:
     st.image(image_paths[0], caption=captions[0], use_column_width=True)
-    if st.button("지도 1 상세 보기"):
+    if st.button("images/guide1.png"):
         st.session_state.selected_image = image_paths[0]
         st.session_state.selected_url = urls[0]
 
