@@ -298,6 +298,8 @@ elif st.session_state.current_page == '추천관광지':
 
     
     
+    import streamlit as st
+    
     # HTML, CSS, JavaScript 코드 정의
     html_code = """
     <!DOCTYPE html>
@@ -350,20 +352,24 @@ elif st.session_state.current_page == '추천관광지':
     </head>
     <body>
         <div class="container" id="icon-container">
+            <!-- 아이콘 1 -->
             <div class="icon" onclick="showDescription(1)">
                 <img src="https://via.placeholder.com/40" alt="Icon 1" />
             </div>
+            <!-- 아이콘 2 -->
             <div class="icon" onclick="showDescription(2)">
                 <img src="https://via.placeholder.com/40" alt="Icon 2" />
             </div>
+            <!-- 아이콘 3 -->
             <div class="icon" onclick="showDescription(3)">
                 <img src="https://via.placeholder.com/40" alt="Icon 3" />
             </div>
+            <!-- 아이콘 4 -->
             <div class="icon" onclick="showDescription(4)">
                 <img src="https://via.placeholder.com/40" alt="Icon 4" />
             </div>
         </div>
-        <div id="description-box"></div>
+        <div id="description-box" style="margin-top: 20px; font-size: 16px; color: #333;"></div>
     
         <script>
             function showDescription(index) {
@@ -376,14 +382,22 @@ elif st.session_state.current_page == '추천관광지':
                     icon.classList.remove("active");
                 });
     
-                // Activate the selected icon and show description
+                // Activate the selected icon
                 const selectedIcon = icons[index - 1];
                 selectedIcon.classList.add("active");
     
                 // Update the description box
+                const descriptions = [
+                    "This is the description for icon 1.",
+                    "This is the description for icon 2.",
+                    "This is the description for icon 3.",
+                    "This is the description for icon 4."
+                ];
+                
+                // Set the description for the clicked icon
                 descriptionBox.innerHTML = `
                     <div class="description">
-                        <strong>Icon ${index} Description:</strong> This is the description for icon ${index}.
+                        <strong>Description for Icon ${index}:</strong> ${descriptions[index - 1]}
                     </div>
                 `;
             }
@@ -393,11 +407,7 @@ elif st.session_state.current_page == '추천관광지':
     """
     
     # Streamlit 앱에서 HTML 코드 렌더링
-    st.components.v1.html(html_code, height=500)
-
-    
-    # Streamlit에서 렌더링
-    st.components.v1.html(html_code, height=500)
+    st.components.v1.html(html_code, height=600)
 
 
     
