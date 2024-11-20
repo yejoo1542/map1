@@ -363,13 +363,21 @@ with col3:
 if st.session_state.selected_image:
     st.markdown("""
         <style>
-        .slide-container {
+        .slide-container {{
             position: relative;
-            max-width: 100%;
-            height: 400px;
             overflow: hidden;
-            margin-top: 20px;
-            animation: slideDown 0.5s ease-in-out;
+            max-height: 500px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: slideDown 0.5s forwards;
+            padding: 20px;
         }
         .slide-container img {
             width: 100%;
