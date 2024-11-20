@@ -298,7 +298,7 @@ elif st.session_state.current_page == '추천관광지':
 
     
     
-    # HTML, CSS, JavaScript로 UI 정의
+    # HTML, CSS, JavaScript 코드 정의
     html_code = """
     <!DOCTYPE html>
     <html lang="en">
@@ -350,10 +350,18 @@ elif st.session_state.current_page == '추천관광지':
     </head>
     <body>
         <div class="container" id="icon-container">
-            <div class="icon" onclick="showDescription(1)">1</div>
-            <div class="icon" onclick="showDescription(2)">2</div>
-            <div class="icon" onclick="showDescription(3)">3</div>
-            <div class="icon" onclick="showDescription(4)">4</div>
+            <div class="icon" onclick="showDescription(1)">
+                <img src="https://via.placeholder.com/40" alt="Icon 1" />
+            </div>
+            <div class="icon" onclick="showDescription(2)">
+                <img src="https://via.placeholder.com/40" alt="Icon 2" />
+            </div>
+            <div class="icon" onclick="showDescription(3)">
+                <img src="https://via.placeholder.com/40" alt="Icon 3" />
+            </div>
+            <div class="icon" onclick="showDescription(4)">
+                <img src="https://via.placeholder.com/40" alt="Icon 4" />
+            </div>
         </div>
         <div id="description-box"></div>
     
@@ -375,7 +383,7 @@ elif st.session_state.current_page == '추천관광지':
                 // Update the description box
                 descriptionBox.innerHTML = `
                     <div class="description">
-                        <strong>Icon ${index} Description:</strong> This is a description for icon ${index}.
+                        <strong>Icon ${index} Description:</strong> This is the description for icon ${index}.
                     </div>
                 `;
             }
@@ -383,6 +391,10 @@ elif st.session_state.current_page == '추천관광지':
     </body>
     </html>
     """
+    
+    # Streamlit 앱에서 HTML 코드 렌더링
+    st.components.v1.html(html_code, height=500)
+
     
     # Streamlit에서 렌더링
     st.components.v1.html(html_code, height=500)
