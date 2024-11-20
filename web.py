@@ -387,10 +387,6 @@ if st.session_state.selected_image:
             from {{ height: 0; opacity: 0; }}
             to {{ height: 300px; opacity: 1; }}
         }}
-        @keyframes slideUp {{
-            from {{ height: 300px; opacity: 1; }}
-            to {{ height: 0; opacity: 0; }}
-        }}
         </style>
         <div id="slide-container" class="slide-container">
             <button class="close-button" onclick="closeSlide()">×</button>
@@ -399,22 +395,4 @@ if st.session_state.selected_image:
                 <button style="margin-top: 20px; width: 200px; height: 50px; font-size: 16px;">지도 이동</button>
             </a>
         </div>
-        <script>
-        function closeSlide() {{
-            const slideContainer = document.getElementById("slide-container");
-            slideContainer.style.animation = "slideUp 0.5s forwards";
-            setTimeout(() => {{
-                // Update the session state by setting selected_image to None
-                const message = {{'selected_image': null}}; 
-                const fetchData = async () => {{
-                    await fetch('/session_state', {{
-                        method: 'POST',
-                        headers: {{'Content-Type': 'application/json'}},
-                        body: JSON.stringify(message)
-                    }});
-                }};
-                fetchData();
-            }}, 500);
-        }}
-        </script>
     """, unsafe_allow_html=True)
