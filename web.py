@@ -407,7 +407,7 @@ elif st.session_state.current_page == '추천관광지':
     """
     
     # Streamlit 앱에서 HTML 코드 렌더링
-    st.components.v2.html(html_code, height=600)
+    st.components.v1.html(html_code, height=200)
 
 
     
