@@ -328,43 +328,43 @@ elif st.session_state.current_page == '추천관광지':
     url1 = 'https://kko.kakao.com/1_de9FgI47'
     url2 = 'https://kko.kakao.com/qq3xXZX0XT'
     url3 = 'https://kko.kakao.com/x8368YWDdQ'
-import streamlit as st
 
-# 이미지와 URL 설정
-image_paths = ["guide1.png", "guide2.png", "guide3.png"]
-captions = ["지도 1", "지도 2", "지도 3"]
-urls = ["https://kko.kakao.com/1_de9FgI47", "https://kko.kakao.com/qq3xXZX0XT", "https://kko.kakao.com/x8368YWDdQ"]
 
-# 상태 초기화
-if "selected_image" not in st.session_state:
-    st.session_state.selected_image = None
-    st.session_state.selected_url = None
+    # 이미지와 URL 설정
+    image_paths = ["guide1.png", "guide2.png", "guide3.png"]
+    captions = ["지도 1", "지도 2", "지도 3"]
+    urls = ["https://kko.kakao.com/1_de9FgI47", "https://kko.kakao.com/qq3xXZX0XT", "https://kko.kakao.com/x8368YWDdQ"]
 
-# 각 줄에 3개씩 이미지와 버튼 배치
-col1, col2, col3 = st.columns([1, 1, 1])
+    # 상태 초기화
+    if "selected_image" not in st.session_state:
+        st.session_state.selected_image = None
+        st.session_state.selected_url = None
+    
+    # 각 줄에 3개씩 이미지와 버튼 배치
+    col1, col2, col3 = st.columns([1, 1, 1])
+    
+    # 컬럼별 이미지와 버튼 추가
+    with col1:
+        st.image(image_paths[0], caption=captions[0], use_column_width=True)
+        if st.button("지도 1 상세 보기"):
+            st.session_state.selected_image = image_paths[0]
+            st.session_state.selected_url = urls[0]
 
-# 컬럼별 이미지와 버튼 추가
-with col1:
-    st.image(image_paths[0], caption=captions[0], use_column_width=True)
-    if st.button("지도 1 상세 보기"):
-        st.session_state.selected_image = image_paths[0]
-        st.session_state.selected_url = urls[0]
+    with col2:
+        st.image(image_paths[1], caption=captions[1], use_column_width=True)
+        if st.button("지도 2 상세 보기"):
+            st.session_state.selected_image = image_paths[1]
+            st.session_state.selected_url = urls[1]
 
-with col2:
-    st.image(image_paths[1], caption=captions[1], use_column_width=True)
-    if st.button("지도 2 상세 보기"):
-        st.session_state.selected_image = image_paths[1]
-        st.session_state.selected_url = urls[1]
+    with col3:
+        st.image(image_paths[2], caption=captions[2], use_column_width=True)
+        if st.button("지도 3 상세 보기"):
+            st.session_state.selected_image = image_paths[2]
+            st.session_state.selected_url = urls[2]
 
-with col3:
-    st.image(image_paths[2], caption=captions[2], use_column_width=True)
-    if st.button("지도 3 상세 보기"):
-        st.session_state.selected_image = image_paths[2]
-        st.session_state.selected_url = urls[2]
-
-# HTML + CSS 애니메이션 추가
-if st.session_state.selected_image:
-    st.markdown(f"""
+    # HTML + CSS 애니메이션 추가
+    if st.session_state.selected_image:
+        st.markdown(f"""
         <style>
         .slide-container {{
             position: relative;
