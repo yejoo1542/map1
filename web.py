@@ -337,10 +337,6 @@ urls = ["https://kko.kakao.com/1_de9FgI47", "https://kko.kakao.com/qq3xXZX0XT", 
 if "selected_image" not in st.session_state:
     st.session_state.selected_image = None
     st.session_state.selected_url = None
-
-if "show_slide" not in st.session_state:
-    st.session_state.show_slide = False  # 슬라이드 상태 관리
-
 # Streamlit 앱 레이아웃
 st.title("지도 선택")
 
@@ -387,25 +383,6 @@ if st.session_state.selected_image:
             animation: slideDown 0.5s forwards;
             padding: 20px;
         }}
-        .close-button {{
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            background-color: #ff4d4d;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-weight: bold;
-        }}
-        .close-button:hover {{
-            background-color: #e63939;
-        }}
         @keyframes slideDown {{
             from {{ height: 0; opacity: 0; }}
             to {{ height: 300px; opacity: 1; }}
@@ -441,7 +418,3 @@ if st.session_state.selected_image:
         }}
         </script>
     """, unsafe_allow_html=True)
-# 슬라이드가 닫힐 때 상태를 업데이트
-if "close-slide" in st.session_state:
-    st.session_state.show_slide = False
-    del st.session_state["close-slide"]  # 슬라이드 상태를 갱신 후 제거
