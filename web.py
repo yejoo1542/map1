@@ -9,6 +9,7 @@ from datetime import datetime, timedelta
 import pandas as pd
 import streamlit.components.v1 as components
 import os
+from PIL import Image
 
 # Streamlit 페이지 설정 (파일 맨 위에서 선언)
 st.set_page_config(page_title="자전거", page_icon='🚴', layout="wide")
