@@ -344,7 +344,7 @@ col1, col2, col3 = st.columns([1, 1, 1])
 # 컬럼별 이미지와 버튼 추가
 with col1:
     st.image(image_paths[0], caption=captions[0], use_column_width=True)
-    if st.button("images/guide1.png"):
+    if st.button("지도 1 상세 보기"):
         st.session_state.selected_image = image_paths[0]
         st.session_state.selected_url = urls[0]
 
@@ -391,7 +391,7 @@ if st.session_state.selected_image:
         }}
         </style>
         <div id="slide-container" class="slide-container">
-            <img src="{st.session_state.selected_image}" style="max-width: 100%; height: auto; border-radius: 8px;" />
+            <img src="{images/guide1.png}" style="max-width: 100%; height: auto; border-radius: 8px;" />
             <a href="{st.session_state.selected_url}" target="_blank">
                 <button style="margin-top: 20px; width: 200px; height: 50px; font-size: 16px;">지도 이동</button>
             </a>
