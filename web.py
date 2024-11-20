@@ -316,7 +316,7 @@ elif st.session_state.current_page == '추천관광지':
             }
             .container {
                 display: flex;
-                gap: 20px;
+                gap: 200px;
                 margin-top: 50px;
             }
             .icon {
@@ -324,7 +324,7 @@ elif st.session_state.current_page == '추천관광지':
                 height: 60px;
                 background-color: #007bff;
                 color: white;
-                border-radius: 50%;
+                border-radius: 10%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
