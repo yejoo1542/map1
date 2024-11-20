@@ -295,10 +295,6 @@ elif st.session_state.current_page == '자전거 위치 정보':
 # 화면 3
 elif st.session_state.current_page == '추천관광지':
     st.title("관광지 추천 및 경로")
-
-    
-    
-    import streamlit as st
     
     # HTML, CSS, JavaScript 코드 정의
     html_code = """
@@ -311,16 +307,15 @@ elif st.session_state.current_page == '추천관광지':
                 margin: 0;
                 padding: 0;
                 display: flex;
-                justify-content: center;
+                flex-direction: column;
                 align-items: center;
+                justify-content: center;
                 height: 100vh;
                 background-color: #f9f9f9;
             }
             .container {
                 display: flex;
-                align-items: center;
-                gap: 200px;
-                transition: all 0.3s ease;
+                gap: 20px;
             }
             .icon {
                 width: 60px;
@@ -338,68 +333,39 @@ elif st.session_state.current_page == '추천관광지':
                 transform: scale(1.1);
             }
             .description {
-                display: none;
+                margin-top: 20px;
+                font-size: 16px;
+                color: #333;
+                text-align: center;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
                 background-color: #fff;
-                padding: 10px 20px;
-                border-radius: 10px;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                margin-left: 20px;
-            }
-            .active .description {
-                display: block;
+                width: 50%;
             }
         </style>
     </head>
     <body>
-        <div class="container" id="icon-container">
-            <!-- 아이콘 1 -->
-            <div class="icon" onclick="showDescription(1)">
-                <img src="https://via.placeholder.com/40" alt="Icon 1" />
-            </div>
-            <!-- 아이콘 2 -->
-            <div class="icon" onclick="showDescription(2)">
-                <img src="https://via.placeholder.com/40" alt="Icon 2" />
-            </div>
-            <!-- 아이콘 3 -->
-            <div class="icon" onclick="showDescription(3)">
-                <img src="https://via.placeholder.com/40" alt="Icon 3" />
-            </div>
-            <!-- 아이콘 4 -->
-            <div class="icon" onclick="showDescription(4)">
-                <img src="https://via.placeholder.com/40" alt="Icon 4" />
-            </div>
+        <div class="container">
+            <div class="icon" onclick="showDescription(1)">1</div>
+            <div class="icon" onclick="showDescription(2)">2</div>
+            <div class="icon" onclick="showDescription(3)">3</div>
+            <div class="icon" onclick="showDescription(4)">4</div>
         </div>
-        <div id="description-box" style="margin-top: 20px; font-size: 16px; color: #333;"></div>
+        <div id="description-box" class="description"></div>
     
         <script>
             function showDescription(index) {
-                const container = document.getElementById("icon-container");
-                const descriptionBox = document.getElementById("description-box");
-    
-                // Reset all icons
-                const icons = container.querySelectorAll(".icon");
-                icons.forEach((icon) => {
-                    icon.classList.remove("active");
-                });
-    
-                // Activate the selected icon
-                const selectedIcon = icons[index - 1];
-                selectedIcon.classList.add("active");
-    
-                // Update the description box
-                const descriptions = [
-                    "This is the description for icon 1.",
-                    "This is the description for icon 2.",
-                    "This is the description for icon 3.",
-                    "This is the description for icon 4."
-                ];
+                const descriptionTexts = {
+                    1: "This is the description for Icon 1.",
+                    2: "This is the description for Icon 2.",
+                    3: "This is the description for Icon 3.",
+                    4: "This is the description for Icon 4."
+                };
                 
-                // Set the description for the clicked icon
-                descriptionBox.innerHTML = `
-                    <div class="description">
-                        <strong>Description for Icon ${index}:</strong> ${descriptions[index - 1]}
-                    </div>
-                `;
+                const descriptionBox = document.getElementById("description-box");
+                descriptionBox.textContent = descriptionTexts[index];
             }
         </script>
     </body>
@@ -407,7 +373,8 @@ elif st.session_state.current_page == '추천관광지':
     """
     
     # Streamlit 앱에서 HTML 코드 렌더링
-    st.components.v1.html(html_code, height=200)
+    st.components.v1.html(html_code, height=400)
+
 
 
     
