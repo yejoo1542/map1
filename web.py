@@ -447,6 +447,8 @@ elif st.session_state.current_page == '추천관광지':
     url2 = 'https://kko.kakao.com/qq3xXZX0XT'
     url3 = 'https://kko.kakao.com/x8368YWDdQ'
 
+import streamlit as st
+
 # 이미지와 URL 설정
 image_paths = ["guide1.png", "guide2.png", "guide3.png"]
 captions = ["지도 1", "지도 2", "지도 3"]
@@ -455,6 +457,7 @@ urls = ["https://kko.kakao.com/1_de9FgI47", "https://kko.kakao.com/qq3xXZX0XT", 
 # 상태 초기화
 if "selected_image" not in st.session_state:
     st.session_state.selected_image = None
+    st.session_state.selected_url = None
 
 # Streamlit 앱 레이아웃
 st.title("지도 선택")
@@ -467,22 +470,25 @@ with col1:
     st.image(image_paths[0], caption=captions[0], use_column_width=True)
     if st.button("지도 1 상세 보기"):
         st.session_state.selected_image = image_paths[0]
+        st.session_state.selected_url = urls[0]
 
 with col2:
     st.image(image_paths[1], caption=captions[1], use_column_width=True)
     if st.button("지도 2 상세 보기"):
         st.session_state.selected_image = image_paths[1]
+        st.session_state.selected_url = urls[1]
 
 with col3:
     st.image(image_paths[2], caption=captions[2], use_column_width=True)
     if st.button("지도 3 상세 보기"):
         st.session_state.selected_image = image_paths[2]
+        st.session_state.selected_url = urls[2]
 
 # HTML + CSS 애니메이션 추가
 if st.session_state.selected_image:
-    st.markdown("""
+    st.markdown(f"""
         <style>
-        .slide-container {
+        .slide-container {{
             position: relative;
             overflow: hidden;
             height: 0;
@@ -497,8 +503,9 @@ if st.session_state.selected_image:
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             animation: slideDown 0.5s forwards;
-        }
-        .close-button {
+            padding: 20px;
+        }}
+        .close-button {{
             position: absolute;
             top: 10px;
             right: 20px;
@@ -513,30 +520,42 @@ if st.session_state.selected_image:
             justify-content: center;
             cursor: pointer;
             font-weight: bold;
-        }
-        .close-button:hover {
+        }}
+        .close-button:hover {{
             background-color: #e63939;
-        }
-        @keyframes slideDown {
-            from { height: 0; opacity: 0; }
-            to { height: 300px; opacity: 1; }
-        }
-        @keyframes slideUp {
-            from { height: 300px; opacity: 1; }
-            to { height: 0; opacity: 0; }
-        }
+        }}
+        @keyframes slideDown {{
+            from {{ height: 0; opacity: 0; }}
+            to {{ height: 300px; opacity: 1; }}
+        }}
+        @keyframes slideUp {{
+            from {{ height: 300px; opacity: 1; }}
+            to {{ height: 0; opacity: 0; }}
+        }}
         </style>
         <div id="slide-container" class="slide-container">
             <button class="close-button" onclick="closeSlide()">×</button>
-            <img src="{image_path}" style="max-width: 100%; height: auto; border-radius: 8px;" />
+            <img src="{st.session_state.selected_image}" style="max-width: 100%; height: auto; border-radius: 8px;" />
+            <a href="{st.session_state.selected_url}" target="_blank">
+                <button style="margin-top: 20px; width: 200px; height: 50px; font-size: 16px;">지도 이동</button>
+            </a>
         </div>
         <script>
-        function closeSlide() {
+        function closeSlide() {{
             const slideContainer = document.getElementById("slide-container");
             slideContainer.style.animation = "slideUp 0.5s forwards";
-            setTimeout(() => {
-                slideContainer.remove();
-            }, 500);
-        }
+            setTimeout(() => {{
+                // Update the session state by setting selected_image to None
+                const message = {{'selected_image': null}}; 
+                const fetchData = async () => {{
+                    await fetch('/session_state', {{
+                        method: 'POST',
+                        headers: {{'Content-Type': 'application/json'}},
+                        body: JSON.stringify(message)
+                    }});
+                }};
+                fetchData();
+            }}, 500);
+        }}
         </script>
-    """.replace("{image_path}", st.session_state.selected_image), unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
