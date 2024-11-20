@@ -329,7 +329,7 @@ elif st.session_state.current_page == '추천관광지':
     url2 = 'https://kko.kakao.com/qq3xXZX0XT'
     url3 = 'https://kko.kakao.com/x8368YWDdQ'
 # 이미지와 URL 설정
-image_paths = ["/images/guide1.png", "/images/guide2.png", "/images/guide3.png"]
+image_paths = ["images/guide1.png", "images/guide2.png", "images/guide3.png"]
 captions = ["지도 1", "지도 2", "지도 3"]
 urls = ["https://kko.kakao.com/1_de9FgI47", "https://kko.kakao.com/qq3xXZX0XT", "https://kko.kakao.com/x8368YWDdQ"]
 
