@@ -172,6 +172,10 @@ temp = weather_data['main']['temp']
 weather_main = weather_data['weather'][0]['main']  # 주요 분류값
 weather_description = weather_data['weather'][0]['description']
 
+# 날씨에 맞는 이미지 파일 경로 가져오기
+weather_image_path = get_weather_image(weather_main)
+weather_image = Image.open(weather_image_path)
+
 # 일기예보 정보 가져오기
 forecast_data = get_forecast()
 
