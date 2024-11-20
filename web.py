@@ -295,6 +295,100 @@ elif st.session_state.current_page == '자전거 위치 정보':
 # 화면 3
 elif st.session_state.current_page == '추천관광지':
     st.title("관광지 추천 및 경로")
+
+    
+    
+    # HTML, CSS, JavaScript로 UI 정의
+    html_code = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-color: #f9f9f9;
+            }
+            .container {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                transition: all 0.3s ease;
+            }
+            .icon {
+                width: 60px;
+                height: 60px;
+                background-color: #007bff;
+                color: white;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                transition: transform 0.3s ease;
+            }
+            .icon:hover {
+                transform: scale(1.1);
+            }
+            .description {
+                display: none;
+                background-color: #fff;
+                padding: 10px 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                margin-left: 20px;
+            }
+            .active .description {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container" id="icon-container">
+            <div class="icon" onclick="showDescription(1)">1</div>
+            <div class="icon" onclick="showDescription(2)">2</div>
+            <div class="icon" onclick="showDescription(3)">3</div>
+            <div class="icon" onclick="showDescription(4)">4</div>
+        </div>
+        <div id="description-box"></div>
+    
+        <script>
+            function showDescription(index) {
+                const container = document.getElementById("icon-container");
+                const descriptionBox = document.getElementById("description-box");
+    
+                // Reset all icons
+                const icons = container.querySelectorAll(".icon");
+                icons.forEach((icon) => {
+                    icon.classList.remove("active");
+                });
+    
+                // Activate the selected icon and show description
+                const selectedIcon = icons[index - 1];
+                selectedIcon.classList.add("active");
+    
+                // Update the description box
+                descriptionBox.innerHTML = `
+                    <div class="description">
+                        <strong>Icon ${index} Description:</strong> This is a description for icon ${index}.
+                    </div>
+                `;
+            }
+        </script>
+    </body>
+    </html>
+    """
+    
+    # Streamlit에서 렌더링
+    st.components.v1.html(html_code, height=500)
+
+
+    
     # URL 정의
     url1 = 'https://kko.kakao.com/1_de9FgI47'
     url2 = 'https://kko.kakao.com/qq3xXZX0XT'
