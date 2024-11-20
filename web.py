@@ -333,15 +333,12 @@ image_paths = ["guide1.png", "guide2.png", "guide3.png"]
 captions = ["지도 1", "지도 2", "지도 3"]
 urls = ["https://kko.kakao.com/1_de9FgI47", "https://kko.kakao.com/qq3xXZX0XT", "https://kko.kakao.com/x8368YWDdQ"]
 
+# 각 줄에 3개씩 이미지와 버튼 배치
+col1, col2, col3 = st.columns([1, 1, 1])
+
 # 상태 초기화
 if "selected_image" not in st.session_state:
     st.session_state.selected_image = None
-    st.session_state.selected_url = None
-# Streamlit 앱 레이아웃
-st.title("지도 선택")
-
-# 각 줄에 3개씩 이미지와 버튼 배치
-col1, col2, col3 = st.columns([1, 1, 1])
 
 # 컬럼별 이미지와 버튼 추가
 with col1:
@@ -364,35 +361,37 @@ with col3:
 
 # HTML + CSS 애니메이션 추가
 if st.session_state.selected_image:
-    st.markdown(f"""
+    st.markdown("""
         <style>
-        .slide-container {{
+        .slide-container {
             position: relative;
+            max-width: 100%;
+            height: 400px;
             overflow: hidden;
-            height: 0;
-            max-height: 500px;
+            margin-top: 20px;
+            animation: slideDown 0.5s ease-in-out;
+        }
+        .slide-container img {
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
+            height: auto;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            animation: slideDown 0.5s forwards;
-            padding: 20px;
-        }}
-        @keyframes slideDown {{
-            from {{ height: 0; opacity: 0; }}
-            to {{ height: 300px; opacity: 1; }}
-        }}
+        }
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
         </style>
-        <div id="slide-container" class="slide-container">
-            <button class="close-button" onclick="closeSlide()">×</button>
-            <img src="{st.session_state.selected_image}" style="max-width: 100%; height: auto; border-radius: 8px;" />
-            <a href="{st.session_state.selected_url}" target="_blank">
-                <button style="margin-top: 20px; width: 200px; height: 50px; font-size: 16px;">지도 이동</button>
-            </a>
+    """, unsafe_allow_html=True)
+
+    # 슬라이드 컨테이너와 이미지 표시
+    st.markdown(f"""
+        <div class="slide-container">
+            <img src="{st.session_state.selected_image}" alt="Selected Image">
         </div>
     """, unsafe_allow_html=True)
