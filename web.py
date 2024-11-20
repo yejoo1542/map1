@@ -149,10 +149,27 @@ def get_forecast():
     forecast_data = response.json()
     return forecast_data
 
+weather_images = {
+    "Clear": "images/clear_sky.png",
+    "Clouds": "images/cloudy.png",
+    "Rain": "images/rain.png",
+    "Drizzle": "images/drizzle.png",
+    "Thunderstorm": "images/thunderstorm.png",
+    "Snow": "images/snow.png",
+    "Mist": "images/mist.png",
+    "Smoke": "images/smoke.png",
+    "Fog": "images/fog.png",
+    "Tornado": "images/tornado.png"
+}
+
+def get_weather_image(weather_main):
+    return weather_images.get(weather_main, "images/default.png")
+    
 
 # 현재 날씨 정보 가져오기
 weather_data = get_current_weather()
 temp = weather_data['main']['temp']
+weather_main = weather_data['weather'][0]['main']  # 주요 분류값
 weather_description = weather_data['weather'][0]['description']
 
 # 일기예보 정보 가져오기
@@ -161,7 +178,9 @@ forecast_data = get_forecast()
 # Streamlit 사이드바에 현재 날씨 정보 표시
 st.sidebar.header('현재 부산 날씨')
 st.sidebar.write(f"기온: {temp}°C")
-st.sidebar.write(f"날씨: {weather_description}")
+st.sidebar.write(f"날씨(주요 분류): {weather_main}")
+st.sidebar.write(f"날씨(상세): {weather_description}")
+st.sidebar.image(weather_image, use_column_width=True)
 
 # 자전거 타기 좋은 날 판단
 if 15 <= temp <= 25 and weather_description in ['clear sky', 'few clouds', 'scattered clouds', 'broken clouds']:
