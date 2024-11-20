@@ -329,7 +329,7 @@ elif st.session_state.current_page == '추천관광지':
     url2 = 'https://kko.kakao.com/qq3xXZX0XT'
     url3 = 'https://kko.kakao.com/x8368YWDdQ'
 # 이미지와 URL 설정
-image_paths = ["images/guide1.png", "images/guide2.png", "images/guide3.png"]
+image_paths = ["guide1.png", "guide2.png", "guide3.png"]
 captions = ["지도 1", "지도 2", "지도 3"]
 urls = ["https://kko.kakao.com/1_de9FgI47", "https://kko.kakao.com/qq3xXZX0XT", "https://kko.kakao.com/x8368YWDdQ"]
 
@@ -391,7 +391,7 @@ if st.session_state.selected_image:
         }}
         </style>
         <div id="slide-container" class="slide-container">
-            <img src="/images/guide1.png" style="max-width: 100%; height: auto; border-radius: 8px;" />
+            <img src="{st,session_state.selected_image}" style="max-width: 100%; height: auto; border-radius: 8px;" />
             <a href="{st.session_state.selected_url}" target="_blank">
                 <button style="margin-top: 20px; width: 200px; height: 50px; font-size: 16px;">지도 이동</button>
             </a>
