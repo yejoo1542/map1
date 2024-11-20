@@ -447,18 +447,96 @@ elif st.session_state.current_page == '추천관광지':
     url2 = 'https://kko.kakao.com/qq3xXZX0XT'
     url3 = 'https://kko.kakao.com/x8368YWDdQ'
 
-    # 이미지와 버튼을 가로로 3개 배치
-    col1, col2, col3 = st.columns([1, 1, 1])  # 컬럼의 비율을 균등하게 설정
+# 이미지와 URL 설정
+image_paths = ["guide1.png", "guide2.png", "guide3.png"]
+captions = ["지도 1", "지도 2", "지도 3"]
+urls = ["https://kko.kakao.com/1_de9FgI47", "https://kko.kakao.com/qq3xXZX0XT", "https://kko.kakao.com/x8368YWDdQ"]
 
-    # 각 컬럼에 이미지와 버튼 배치
-    with col1:
-        st.image('guide1.png', caption="지도 1", use_column_width=True)  # 이미지 크기 고정
-        st.markdown(f'<a href="{url1}" target="_blank"><button style="width: 200px; height: 50px; font-size: 16px;">지도 1로 이동</button></a>', unsafe_allow_html=True)
+# 상태 초기화
+if "selected_image" not in st.session_state:
+    st.session_state.selected_image = None
 
-    with col2:
-        st.image('guide2.png', caption="지도 2", use_column_width=True)  # 이미지 크기 고정
-        st.markdown(f'<a href="{url2}" target="_blank"><button style="width: 200px; height: 50px; font-size: 16px;">지도 2로 이동</button></a>', unsafe_allow_html=True)
+# Streamlit 앱 레이아웃
+st.title("지도 선택")
 
-    with col3:
-        st.image('guide3.png', caption="지도 3", use_column_width=True)  # 이미지 크기 고정
-        st.markdown(f'<a href="{url3}" target="_blank"><button style="width: 200px; height: 50px; font-size: 16px;">지도 3으로 이동</button></a>', unsafe_allow_html=True)
+# 각 줄에 3개씩 이미지와 버튼 배치
+col1, col2, col3 = st.columns([1, 1, 1])
+
+# 컬럼별 이미지와 버튼 추가
+with col1:
+    st.image(image_paths[0], caption=captions[0], use_column_width=True)
+    if st.button("지도 1 상세 보기"):
+        st.session_state.selected_image = image_paths[0]
+
+with col2:
+    st.image(image_paths[1], caption=captions[1], use_column_width=True)
+    if st.button("지도 2 상세 보기"):
+        st.session_state.selected_image = image_paths[1]
+
+with col3:
+    st.image(image_paths[2], caption=captions[2], use_column_width=True)
+    if st.button("지도 3 상세 보기"):
+        st.session_state.selected_image = image_paths[2]
+
+# HTML + CSS 애니메이션 추가
+if st.session_state.selected_image:
+    st.markdown("""
+        <style>
+        .slide-container {
+            position: relative;
+            overflow: hidden;
+            height: 0;
+            max-height: 500px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: slideDown 0.5s forwards;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .close-button:hover {
+            background-color: #e63939;
+        }
+        @keyframes slideDown {
+            from { height: 0; opacity: 0; }
+            to { height: 300px; opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { height: 300px; opacity: 1; }
+            to { height: 0; opacity: 0; }
+        }
+        </style>
+        <div id="slide-container" class="slide-container">
+            <button class="close-button" onclick="closeSlide()">×</button>
+            <img src="{image_path}" style="max-width: 100%; height: auto; border-radius: 8px;" />
+        </div>
+        <script>
+        function closeSlide() {
+            const slideContainer = document.getElementById("slide-container");
+            slideContainer.style.animation = "slideUp 0.5s forwards";
+            setTimeout(() => {
+                slideContainer.remove();
+            }, 500);
+        }
+        </script>
+    """.replace("{image_path}", st.session_state.selected_image), unsafe_allow_html=True)
