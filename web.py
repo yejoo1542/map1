@@ -328,6 +328,8 @@ elif st.session_state.current_page == '추천관광지':
     url1 = 'https://kko.kakao.com/1_de9FgI47'
     url2 = 'https://kko.kakao.com/qq3xXZX0XT'
     url3 = 'https://kko.kakao.com/x8368YWDdQ'
+import streamlit as st
+
 # 이미지와 URL 설정
 image_paths = ["guide1.png", "guide2.png", "guide3.png"]
 captions = ["지도 1", "지도 2", "지도 3"]
@@ -337,7 +339,7 @@ urls = ["https://kko.kakao.com/1_de9FgI47", "https://kko.kakao.com/qq3xXZX0XT", 
 if "selected_image" not in st.session_state:
     st.session_state.selected_image = None
     st.session_state.selected_url = None
-    
+
 # 각 줄에 3개씩 이미지와 버튼 배치
 col1, col2, col3 = st.columns([1, 1, 1])
 
@@ -406,7 +408,7 @@ if st.session_state.selected_image:
                 const fetchData = async () => {{
                     await fetch('/session_state', {{
                         method: 'POST',
-                        headers: {{'Content-Type': 'application/json'}},
+                        headers: {{'Content-Type': 'application/json'}}',
                         body: JSON.stringify(message)
                     }});
                 }};
