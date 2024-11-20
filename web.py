@@ -296,6 +296,8 @@ elif st.session_state.current_page == '자전거 위치 정보':
 elif st.session_state.current_page == '추천관광지':
     st.title("관광지 추천 및 경로")
     
+    import streamlit as st
+    
     # HTML, CSS, JavaScript 코드 정의
     html_code = """
     <!DOCTYPE html>
@@ -309,13 +311,13 @@ elif st.session_state.current_page == '추천관광지':
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                justify-content: center;
-                height: 100vh;
+                justify-content: flex-start;
                 background-color: #f9f9f9;
             }
             .container {
                 display: flex;
                 gap: 20px;
+                margin-top: 50px;
             }
             .icon {
                 width: 60px;
@@ -332,8 +334,21 @@ elif st.session_state.current_page == '추천관광지':
             .icon:hover {
                 transform: scale(1.1);
             }
-            .description {
+            .dynamic-content {
                 margin-top: 20px;
+                width: 60%;
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                animation: fadeIn 0.5s ease-in-out;
+            }
+            .dynamic-content img {
+                width: 200px;
+                height: auto;
+                border-radius: 10px;
+            }
+            .description {
                 font-size: 16px;
                 color: #333;
                 text-align: center;
@@ -342,30 +357,56 @@ elif st.session_state.current_page == '추천관광지':
                 border-radius: 8px;
                 background-color: #fff;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                width: 50%;
+                width: 100%;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(-20px); }
+                to { opacity: 1; transform: translateY(0); }
             }
         </style>
     </head>
     <body>
         <div class="container">
-            <div class="icon" onclick="showDescription(1)">1</div>
-            <div class="icon" onclick="showDescription(2)">2</div>
-            <div class="icon" onclick="showDescription(3)">3</div>
-            <div class="icon" onclick="showDescription(4)">4</div>
+            <div class="icon" onclick="showDynamicContent(1)">1</div>
+            <div class="icon" onclick="showDynamicContent(2)">2</div>
+            <div class="icon" onclick="showDynamicContent(3)">3</div>
+            <div class="icon" onclick="showDynamicContent(4)">4</div>
         </div>
-        <div id="description-box" class="description"></div>
+        <div id="dynamic-content" class="dynamic-content">
+            <img id="dynamic-image" src="" alt="Dynamic Image">
+            <div id="description-box" class="description"></div>
+        </div>
     
         <script>
-            function showDescription(index) {
+            function showDynamicContent(index) {
                 const descriptionTexts = {
                     1: "This is the description for Icon 1.",
                     2: "This is the description for Icon 2.",
                     3: "This is the description for Icon 3.",
                     4: "This is the description for Icon 4."
                 };
-                
+                const imageSources = {
+                    1: "https://via.placeholder.com/200?text=Icon+1+Image",
+                    2: "https://via.placeholder.com/200?text=Icon+2+Image",
+                    3: "https://via.placeholder.com/200?text=Icon+3+Image",
+                    4: "https://via.placeholder.com/200?text=Icon+4+Image"
+                };
+    
+                const dynamicContent = document.getElementById("dynamic-content");
                 const descriptionBox = document.getElementById("description-box");
-                descriptionBox.textContent = descriptionTexts[index];
+                const dynamicImage = document.getElementById("dynamic-image");
+    
+                // Update content
+                if (descriptionTexts[index]) {
+                    descriptionBox.textContent = descriptionTexts[index];
+                    dynamicImage.src = imageSources[index];
+                } else {
+                    descriptionBox.textContent = "No description available.";
+                    dynamicImage.src = "";
+                }
+    
+                // Show content with animation
+                dynamicContent.style.display = "flex";
             }
         </script>
     </body>
@@ -373,8 +414,7 @@ elif st.session_state.current_page == '추천관광지':
     """
     
     # Streamlit 앱에서 HTML 코드 렌더링
-    st.components.v1.html(html_code, height=400)
-
+    st.components.v1.html(html_code, height=600)
 
 
     
