@@ -391,7 +391,7 @@ if st.session_state.selected_image:
         }}
         </style>
         <div id="slide-container" class="slide-container">
-            <img src="{images/guide1.png}" style="max-width: 100%; height: auto; border-radius: 8px;" />
+            <img src="{/images/guide1.png}" style="max-width: 100%; height: auto; border-radius: 8px;" />
             <a href="{st.session_state.selected_url}" target="_blank">
                 <button style="margin-top: 20px; width: 200px; height: 50px; font-size: 16px;">지도 이동</button>
             </a>
