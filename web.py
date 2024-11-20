@@ -337,9 +337,7 @@ urls = ["https://kko.kakao.com/1_de9FgI47", "https://kko.kakao.com/qq3xXZX0XT", 
 if "selected_image" not in st.session_state:
     st.session_state.selected_image = None
     st.session_state.selected_url = None
-# Streamlit 앱 레이아웃
-st.title("지도 선택")
-
+    
 # 각 줄에 3개씩 이미지와 버튼 배치
 col1, col2, col3 = st.columns([1, 1, 1])
 
@@ -393,7 +391,6 @@ if st.session_state.selected_image:
         }}
         </style>
         <div id="slide-container" class="slide-container">
-            <button class="close-button" onclick="closeSlide()">×</button>
             <img src="{st.session_state.selected_image}" style="max-width: 100%; height: auto; border-radius: 8px;" />
             <a href="{st.session_state.selected_url}" target="_blank">
                 <button style="margin-top: 20px; width: 200px; height: 50px; font-size: 16px;">지도 이동</button>
