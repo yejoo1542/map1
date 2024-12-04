@@ -204,7 +204,7 @@ def find_good_biking_time(forecast_data, days=3):
             continue
         temp = forecast['main']['temp']
         weather_description = forecast['weather'][0]['description']
-        if 15 <= temp <= 25 and weather_description in ['clear sky', 'few clouds', 'scattered clouds', 'broken clouds']:
+        if  weather_description in ['clear sky', 'few clouds', 'scattered clouds', 'broken clouds']:
             good_times.append({
                 "날짜": forecast_time.strftime('%Y-%m-%d'),
                 "요일": forecast_time.strftime('%A'),
