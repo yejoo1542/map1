@@ -417,6 +417,6 @@ elif st.session_state.current_page == '추천관광지':
         }}
         </script>
     """, unsafe_allow_html=True)
-        }}
+        }
         </script>
     """, unsafe_allow_html=True)
