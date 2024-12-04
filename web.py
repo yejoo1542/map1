@@ -32,7 +32,7 @@ def switch_page(page_name):
 
 # 페이지 선택 UI
 st.sidebar.title("페이지 선택")
-st.sidebar.button("메인화면", on_click=lambda: switch_page("메인화면"))
+st.sidebar.button("프로젝트 소개", on_click=lambda: switch_page("프로젝트 소개"))
 st.sidebar.button("자전거 위치 정보", on_click=lambda: switch_page("자전거 위치 정보"))
 st.sidebar.button("추천관광지", on_click=lambda: switch_page("추천관광지"))
 
@@ -230,11 +230,11 @@ else:
 
 
 # 메인 화면
-if st.session_state.current_page == '메인화면':
-    st.title("메인화면")
-    st.write("페달이 소개랑 사진 등등이 들어갈 화면입니다~")
+if st.session_state.current_page == '프로젝트 소개':
+    st.title("프로젝트 소개")
     # 이미지 경로와 설명
-    st.image("test1.jpg", caption="이미지 시험 중", use_column_width=True)
+    st.image("images/home1.jpg",  use_column_width=True)
+    st.image("images/home2.jpg",  use_column_width=True)
 
 
 # 자전거 위치 정보 화면
