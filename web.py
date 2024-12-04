@@ -237,7 +237,6 @@ if st.session_state.current_page == '프로젝트 소개':
 # 자전거 위치 정보 화면
 elif st.session_state.current_page == '자전거 위치 정보':
     st.title("부산광역시 자전거 위치 정보")
-    st.write("여기에 자전거 관련 정보를 표시합니다.")
 
 
     # 이미지 선택 옵션과 관련된 데이터
@@ -261,7 +260,7 @@ elif st.session_state.current_page == '자전거 위치 정보':
     selected_option = list(option_images.keys())[selected_option_index]
 
     # 선택된 옵션에 대한 정보 출력
-    st.write(f"선택한 옵션: **{selected_option}**")
+    st.write(f"**{selected_option}**")
 
     # 데이터 로드 (각각의 데이터는 이미 파일에서 로드되어 있음)
     if selected_option == '자전거 대여소':
