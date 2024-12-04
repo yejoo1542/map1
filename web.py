@@ -249,7 +249,6 @@ elif st.session_state.current_page == '자전거 위치 정보':
 
     # 이미지 선택 위젯
     selected_option_index = image_select(
-        "자전거 관련 정보를 선택하세요:",
         images=list(option_images.values()),  # 이미지 리스트
         captions=list(option_images.keys()),  # 각 이미지에 대한 캡션
         index=0,  # 기본 선택 (0번째 옵션)
@@ -260,7 +259,7 @@ elif st.session_state.current_page == '자전거 위치 정보':
     selected_option = list(option_images.keys())[selected_option_index]
 
     # 선택된 옵션에 대한 정보 출력
-    st.write(f"**{selected_option}**")
+    st.write(f"**{selected_option}** 위치 정보")
 
     # 데이터 로드 (각각의 데이터는 이미 파일에서 로드되어 있음)
     if selected_option == '자전거 대여소':
