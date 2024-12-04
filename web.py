@@ -245,10 +245,10 @@ elif st.session_state.current_page == '자전거 위치 정보':
 
     # 이미지 선택 옵션과 관련된 데이터
     option_images = {
-        "자전거 대여소": "image/2.png",
-        "도시공원": "image/3.png",
-        "자전거 보관소": "image/4.png",
-        "종합 병원": "image/5.png"
+        "자전거 대여소": "images/2.png",
+        "도시공원": "images/3.png",
+        "자전거 보관소": "images/4.png",
+        "종합 병원": "images/5.png"
     }
 
     # 이미지 선택 위젯
