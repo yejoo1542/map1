@@ -33,7 +33,7 @@ def switch_page(page_name):
 # 페이지 선택 UI
 st.sidebar.button("프로젝트 소개", on_click=lambda: switch_page("프로젝트 소개"))
 st.sidebar.button("자전거 위치 정보", on_click=lambda: switch_page("자전거 위치 정보"))
-st.sidebar.button("추천관광지", on_click=lambda: switch_page("추천관광지"))
+st.sidebar.button("관광지 추천", on_click=lambda: switch_page("관광지 추천"))
 
 
 # GPS 위치 가져오기 (JavaScript 삽입)
@@ -229,7 +229,6 @@ else:
 
 # 메인 화면
 if st.session_state.current_page == '프로젝트 소개':
-    st.title("프로젝트 소개")
     # 이미지 경로와 설명
     st.image("images/home1.png",  use_column_width=True)
     st.image("images/home2.png",  use_column_width=True)
@@ -315,7 +314,7 @@ elif st.session_state.current_page == '자전거 위치 정보':
 
 
 # 화면 3
-elif st.session_state.current_page == '추천관광지':
+elif st.session_state.current_page == '관광지 추천':
     st.title("관광지 추천 및 경로")
     
 
