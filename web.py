@@ -283,9 +283,10 @@ elif st.session_state.current_page == '자전거 위치 정보':
     }
     # 패딩 처리된 이미지 생성
     target_size = (300, 300)  # 고정 크기 (예: 300x300)
-    processed_images = [
-        caption: add_padding(image_path, target_size) for image_path in option_images.values()
-    ]
+    processed_images = {
+        caption: add_padding(image_path, target_size) 
+        for caption, image_path in option_images.items()
+    }
     # 이미지 선택 위젯
     selected_option_index = image_select(
         "자전거 관련 정보를 선택하세요:",
