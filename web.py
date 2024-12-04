@@ -233,8 +233,8 @@ else:
 if st.session_state.current_page == '프로젝트 소개':
     st.title("프로젝트 소개")
     # 이미지 경로와 설명
-    st.image("images/home1.jpg",  use_column_width=True)
-    st.image("images/home2.jpg",  use_column_width=True)
+    st.image("images/home1.png",  use_column_width=True)
+    st.image("images/home2.png",  use_column_width=True)
 
 
 # 자전거 위치 정보 화면
