@@ -16,7 +16,7 @@ st.set_page_config(page_title="자전거", page_icon='🚴', layout="wide")
 
 # 세션 상태 초기화
 if 'current_page' not in st.session_state:
-    st.session_state.current_page = '메인화면'
+    st.session_state.current_page = '프로젝트 소개'
 
 
 # 위치 경도위도 초기화
