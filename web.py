@@ -183,8 +183,7 @@ forecast_data = get_forecast()
 # Streamlit 사이드바에 현재 날씨 정보 표시
 st.sidebar.header('현재 부산 날씨')
 st.sidebar.write(f"기온: {temp}°C")
-st.sidebar.write(f"날씨(주요 분류): {weather_main}")
-st.sidebar.write(f"날씨(상세): {weather_description}")
+st.sidebar.write(f"날씨: {weather_description}")
 st.sidebar.image(weather_image, use_column_width=True)
 
 # 자전거 타기 좋은 날 판단
