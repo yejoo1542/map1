@@ -228,6 +228,36 @@ if good_times:
 else:
     st.sidebar.write("앞으로 3일 동안 자전거 타기 좋은 시간이 없습니다.")
 
+# 패딩 처리 함수 정의
+def add_padding(image_path, target_size):
+    """
+    이미지 파일 경로를 받아 패딩 처리하여 target_size에 맞게 조정
+    """
+    image = Image.open(image_path)
+    original_width, original_height = image.size
+    target_width, target_height = target_size
+
+    # 비율 유지하며 축소/확대
+    image_ratio = original_width / original_height
+    target_ratio = target_width / target_height
+
+    if image_ratio > target_ratio:
+        new_width = target_width
+        new_height = int(target_width / image_ratio)
+    else:
+        new_width = int(target_height * image_ratio)
+        new_height = target_height
+
+    resized_image = image.resize((new_width, new_height), Image.ANTIALIAS)
+
+    # 새 캔버스 생성 (중앙에 이미지 배치)
+    new_image = Image.new("RGB", target_size, (255, 255, 255))  # 흰색 배경
+    paste_x = (target_width - new_width) // 2
+    paste_y = (target_height - new_height) // 2
+    new_image.paste(resized_image, (paste_x, paste_y))
+
+    return new_image
+
 
 # 메인 화면
 if st.session_state.current_page == '프로젝트 소개':
@@ -242,6 +272,7 @@ elif st.session_state.current_page == '자전거 위치 정보':
     st.title("부산광역시 자전거 위치 정보")
     st.write("여기에 자전거 관련 정보를 표시합니다.")
 
+    
 
     # 이미지 선택 옵션과 관련된 데이터
     option_images = {
@@ -250,7 +281,11 @@ elif st.session_state.current_page == '자전거 위치 정보':
         "자전거 보관소": "images/4.png",
         "종합 병원": "images/5.png"
     }
-
+    # 패딩 처리된 이미지 생성
+    target_size = (300, 300)  # 고정 크기 (예: 300x300)
+    processed_images = [
+        caption: add_padding(image_path, target_size) for image_path in option_images.values()
+    ]
     # 이미지 선택 위젯
     selected_option_index = image_select(
         "자전거 관련 정보를 선택하세요:",
