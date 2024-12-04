@@ -186,7 +186,7 @@ st.sidebar.write(f"날씨: {weather_description}")
 st.sidebar.image(weather_image, use_column_width=True)
 
 # 자전거 타기 좋은 날 판단
-if 15 <= temp <= 25 and weather_description in ['clear sky', 'few clouds', 'scattered clouds', 'broken clouds']:
+if weather_description in ['clear sky', 'few clouds', 'scattered clouds', 'broken clouds']:
     st.sidebar.success("자전거 타기 좋은 날이네요!")
 else:
     st.sidebar.warning("자전거 타러 나가는 걸 다시 생각해 보세요!")
