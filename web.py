@@ -31,7 +31,6 @@ def switch_page(page_name):
     st.session_state.current_page = page_name
 
 # 페이지 선택 UI
-st.sidebar.title("페이지 선택")
 st.sidebar.button("프로젝트 소개", on_click=lambda: switch_page("프로젝트 소개"))
 st.sidebar.button("자전거 위치 정보", on_click=lambda: switch_page("자전거 위치 정보"))
 st.sidebar.button("추천관광지", on_click=lambda: switch_page("추천관광지"))
