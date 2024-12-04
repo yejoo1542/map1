@@ -3,3 +3,4 @@ streamlit
 pandas
 streamlit_folium
 streamlit_image_select
+PIL
