@@ -370,5 +370,17 @@ elif st.session_state.current_page == '관광지 추천':
     # HTML + CSS 애니메이션 추가
     if st.session_state.selected_image:
         st.image(st.session_state.selected_detail,  use_column_width=True)
-        if st.button("경로 안내"):
-            st.markdown(f"[카카오맵 경로 안내]({st.session_state.selected_url})", unsafe_allow_html=True)
+        st.markdown(f"""
+            <a href="{st.session_state.selected_url}" target="_blank">
+                <button style="
+                    padding: 10px 20px; 
+                    font-size: 16px; 
+                    color: white; 
+                    background-color: #4CAF50; 
+                    border: none; 
+                    border-radius: 5px; 
+                    cursor: pointer;">
+                    경로 안내
+                </button>
+            </a>
+""", unsafe_allow_html=True)
