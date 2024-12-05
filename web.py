@@ -376,7 +376,7 @@ elif st.session_state.current_page == '관광지 추천':
                     padding: 10px 20px; 
                     font-size: 16px; 
                     color: black; 
-                    background-color: #000000; 
+                    background-color: #FFFFFF; 
                     border: D6D6D9; 
                     border-radius: 5px; 
                     cursor: pointer;">
