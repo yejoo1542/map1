@@ -331,7 +331,7 @@ elif st.session_state.current_page == '관광지 추천':
     image_paths = ["images/title1.jpg", "images/title2.png", "images/title3.png"]
     captions = ["지도 1", "지도 2", "지도 3"]
     urls = ["https://kko.kakao.com/1_de9FgI47", "https://kko.kakao.com/qq3xXZX0XT", "https://kko.kakao.com/7alrtOKbX3"]
-    details = ["https://github.com/yejoo1542/map1/blob/main/images/detail1.png", "https://github.com/yejoo1542/map1/blob/main/images/detail2.png", "https://github.com/yejoo1542/map1/blob/main/images/detail3.png"]
+    details = ["images/detail1.png", "images/detail2.png", "images/detail3.png"]
 
     # 상태 초기화
     if "selected_image" not in st.session_state:
@@ -369,4 +369,4 @@ elif st.session_state.current_page == '관광지 추천':
     # HTML + CSS 애니메이션 추가
     # HTML + CSS 애니메이션 추가
     if st.session_state.selected_image:
-        st.image("{st.session_state.selected_detail}",  use_column_width=True)
+        st.image("st.session_state.selected_detail",  use_column_width=True)
