@@ -324,13 +324,13 @@ elif st.session_state.current_page == '관광지 추천':
     # URL 정의
     url1 = 'https://kko.kakao.com/1_de9FgI47'
     url2 = 'https://kko.kakao.com/qq3xXZX0XT'
-    url3 = 'https://kko.kakao.com/x8368YWDdQ'
+    url3 = 'https://kko.kakao.com/7alrtOKbX3'
 
 
     # 이미지와 URL 설정
-    image_paths = ["guide1.png", "guide2.png", "guide3.png"]
+    image_paths = ["images/title1.jpg", "images/title2.png", "images/title3.png"]
     captions = ["지도 1", "지도 2", "지도 3"]
-    urls = ["https://kko.kakao.com/1_de9FgI47", "https://kko.kakao.com/qq3xXZX0XT", "https://kko.kakao.com/x8368YWDdQ"]
+    urls = ["https://kko.kakao.com/1_de9FgI47", "https://kko.kakao.com/qq3xXZX0XT", "https://kko.kakao.com/7alrtOKbX3"]
 
     # 상태 초기화
     if "selected_image" not in st.session_state:
