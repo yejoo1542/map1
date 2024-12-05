@@ -369,7 +369,8 @@ elif st.session_state.current_page == '관광지 추천':
     # HTML + CSS 애니메이션 추가
     # HTML + CSS 애니메이션 추가
     if st.session_state.selected_image:
-        st.markdown(f"""
+        st.image("{st.session_state.selected_detail}",  use_column_width=True)
+
         <style>
             .slide-container {{
             position: relative;
