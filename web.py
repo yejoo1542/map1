@@ -329,7 +329,7 @@ elif st.session_state.current_page == '관광지 추천':
 
     # 이미지와 URL 설정
     image_paths = ["images/title1.jpg", "images/title2.png", "images/title3.png"]
-    captions = ["지도 1", "지도 2", "지도 3"]
+    captions = ["동래", "광안리", "기장"]
     urls = ["https://kko.kakao.com/1_de9FgI47", "https://kko.kakao.com/qq3xXZX0XT", "https://kko.kakao.com/7alrtOKbX3"]
     details = ["images/detail1.png", "images/detail2.png", "images/detail3.png"]
 
@@ -345,14 +345,14 @@ elif st.session_state.current_page == '관광지 추천':
     # 컬럼별 이미지와 버튼 추가
     with col1:
         st.image(image_paths[0], caption=captions[0], use_column_width=True)
-        if st.button("지도 1 상세 보기"):
+        if st.button("코스 1 상세 보기"):
             st.session_state.selected_image = image_paths[0]
             st.session_state.selected_url = urls[0]
             st.session_state.selected_detail = details[0]
 
     with col2:
         st.image(image_paths[1], caption=captions[1], use_column_width=True)
-        if st.button("지도 2 상세 보기"):
+        if st.button("코스 2 상세 보기"):
             st.session_state.selected_image = image_paths[1]
             st.session_state.selected_url = urls[1]
             st.session_state.selected_detail = details[1]
@@ -360,7 +360,7 @@ elif st.session_state.current_page == '관광지 추천':
 
     with col3:
         st.image(image_paths[2], caption=captions[2], use_column_width=True)
-        if st.button("지도 3 상세 보기"):
+        if st.button("코스 3 상세 보기"):
             st.session_state.selected_image = image_paths[2]
             st.session_state.selected_url = urls[2]
             st.session_state.selected_detail = details[2]
@@ -370,3 +370,5 @@ elif st.session_state.current_page == '관광지 추천':
     # HTML + CSS 애니메이션 추가
     if st.session_state.selected_image:
         st.image(st.session_state.selected_detail,  use_column_width=True)
+        if st.button("경로 안내"):
+    st.markdown(f"[카카오맵 경로 안내]({st.session_state.selected_url})", unsafe_allow_html=True)
