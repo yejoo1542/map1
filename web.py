@@ -367,13 +367,13 @@ elif st.session_state.current_page == '관광지 추천':
 
 
     # HTML + CSS 애니메이션 추가
+    # HTML + CSS 애니메이션 추가
     if st.session_state.selected_image:
         st.markdown(f"""
         <style>
-        .slide-container {{
+            .slide-container {{
             position: relative;
             overflow: hidden;
-            height: 0;
             max-height: 500px;
             width: 100%;
             display: flex;
@@ -387,6 +387,20 @@ elif st.session_state.current_page == '관광지 추천':
             animation: slideDown 0.5s forwards;
             padding: 20px;
         }}
+        img {{
+            max-width: 100%;
+            max-height: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+        }}
+        button {{
+            margin-top: 20px;
+            width: 200px;
+            height: 50px;
+            font-size: 16px;
+            cursor: pointer;
+        }}
         @keyframes slideDown {{
             from {{ height: 0; opacity: 0; }}
             to {{ height: 300px; opacity: 1; }}
@@ -397,9 +411,9 @@ elif st.session_state.current_page == '관광지 추천':
         }}
         </style>
         <div id="slide-container" class="slide-container">
-            <img src="{st.session_state.selected_detail}" style="max-width: 100%; height: auto; border-radius: 8px;" />
+            <img src="{st.session_state.selected_detail}" alt="지도 이미지" />
             <a href="{st.session_state.selected_url}" target="_blank">
-                <button style="margin-top: 20px; width: 200px; height: 50px; font-size: 16px;">지도 이동</button>
+                <button>지도 이동</button>
             </a>
         </div>
         <script>
@@ -407,12 +421,11 @@ elif st.session_state.current_page == '관광지 추천':
             const slideContainer = document.getElementById("slide-container");
             slideContainer.style.animation = "slideUp 0.5s forwards";
             setTimeout(() => {{
-                // Update the session state by setting selected_image to None
                 const message = {{'selected_image': null}}; 
                 const fetchData = async () => {{
                     await fetch('/session_state', {{
                         method: 'POST',
-                        headers: {{'Content-Type': 'application/json'}}',
+                        headers: {{'Content-Type': 'application/json'}},
                         body: JSON.stringify(message)
                     }});
                 }};
@@ -420,4 +433,4 @@ elif st.session_state.current_page == '관광지 추천':
             }}, 500);
         }}
         </script>
-    """, unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
