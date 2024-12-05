@@ -378,7 +378,7 @@ elif st.session_state.current_page == '관광지 추천':
                     color: black; 
                     background-color: #FFFFFF; 
                     border: 0.5px solid #D6D6D6;
-                    border-radius: 5px; 
+                    border-radius: 10px; 
                     cursor: pointer;">
                     경로 안내
                 </button>
