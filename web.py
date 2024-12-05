@@ -331,11 +331,13 @@ elif st.session_state.current_page == '관광지 추천':
     image_paths = ["images/title1.jpg", "images/title2.png", "images/title3.png"]
     captions = ["지도 1", "지도 2", "지도 3"]
     urls = ["https://kko.kakao.com/1_de9FgI47", "https://kko.kakao.com/qq3xXZX0XT", "https://kko.kakao.com/7alrtOKbX3"]
+    details = ["https://imgur.com/fCPFBih", "https://imgur.com/mzPHpLr", "https://imgur.com/G9TJ4pA"]
 
     # 상태 초기화
     if "selected_image" not in st.session_state:
         st.session_state.selected_image = None
         st.session_state.selected_url = None
+        st.session_state.selected_detail = None
     
     # 각 줄에 3개씩 이미지와 버튼 배치
     col1, col2, col3 = st.columns([1, 1, 1])
@@ -346,18 +348,23 @@ elif st.session_state.current_page == '관광지 추천':
         if st.button("지도 1 상세 보기"):
             st.session_state.selected_image = image_paths[0]
             st.session_state.selected_url = urls[0]
+            st.session_state.selected_detail = details[0]
 
     with col2:
         st.image(image_paths[1], caption=captions[1], use_column_width=True)
         if st.button("지도 2 상세 보기"):
             st.session_state.selected_image = image_paths[1]
             st.session_state.selected_url = urls[1]
+            st.session_state.selected_detail = details[1]
+
 
     with col3:
         st.image(image_paths[2], caption=captions[2], use_column_width=True)
         if st.button("지도 3 상세 보기"):
             st.session_state.selected_image = image_paths[2]
             st.session_state.selected_url = urls[2]
+            st.session_state.selected_detail = details[1]
+
 
     # HTML + CSS 애니메이션 추가
     if st.session_state.selected_image:
@@ -390,7 +397,7 @@ elif st.session_state.current_page == '관광지 추천':
         }}
         </style>
         <div id="slide-container" class="slide-container">
-            <img src="{st.session_state.selected_image}" style="max-width: 100%; height: auto; border-radius: 8px;" />
+            <img src="{st.session_state.selected_detail}" style="max-width: 100%; height: auto; border-radius: 8px;" />
             <a href="{st.session_state.selected_url}" target="_blank">
                 <button style="margin-top: 20px; width: 200px; height: 50px; font-size: 16px;">지도 이동</button>
             </a>
