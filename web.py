@@ -22,7 +22,7 @@ translator = Translator()
 
 # 번역 버튼 상태 관리
 if "translate" not in st.session_state:
-    st.session_state.translate = False
+    st.session_state.translate = False  # False: 한글, True: 영어
 
 # 번역 버튼
 if st.button("번역하기"):
@@ -38,6 +38,23 @@ def translate_text(text, target_language="en"):
             st.error("번역에 실패했습니다.")
             return text
     return text
+
+# 번역할 텍스트 목록 (홈페이지에 있는 모든 텍스트들을 여기에 추가)
+text_list = [
+    "자전거 정보",
+    "자전거를 타고 여행을 떠나보세요.",
+    "자전거는 환경 친화적인 교통수단입니다.",
+    "자전거를 타면 건강도 챙길 수 있습니다.",
+    "프로젝트 소개",
+    "페달이 프로젝트"
+    "기장"
+    "자전거 위치 정보"
+]
+
+# 번역된 텍스트 출력
+for text in text_list:
+    translated_text = translate_text(text, target_language="en" if st.session_state.translate else "ko")
+    st.write(translated_text)
 ####### 번역 테스트
 
 
