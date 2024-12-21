@@ -39,17 +39,6 @@ def translate_text(text, target_language="en"):
             return text
     return text
 
-# 번역할 텍스트
-title = "자전거 정보"
-description = "자전거를 타고 여행을 떠나보세요."
-button_text = "자전거 구매하기"
-message = "자전거는 환경 친화적인 교통수단입니다."
-
-# 번역된 텍스트 출력
-st.title(translate_text(title, target_language="en" if st.session_state.translate else "ko"))
-st.write(translate_text(description, target_language="en" if st.session_state.translate else "ko"))
-st.button(translate_text(button_text, target_language="en" if st.session_state.translate else "ko"))
-st.write(translate_text(message, target_language="en" if st.session_state.translate else "ko"))
 
 ####### 번역 테스트
 
@@ -71,14 +60,20 @@ if 'longitude' not in st.session_state:
 def switch_page(page_name):
     st.session_state.current_page = page_name
 
-# 페이지 선택 UI
+# 사이드바 버튼
 st.sidebar.title("페달이 프로젝트")
 st.sidebar.button(
     translate_text("프로젝트 소개", target_language="en" if st.session_state.translate else "ko"),
     on_click=lambda: switch_page("프로젝트 소개")
-)                  
-st.sidebar.button("자전거 위치 정보", on_click=lambda: switch_page("자전거 위치 정보"))
-st.sidebar.button("관광지 추천", on_click=lambda: switch_page("관광지 추천"))
+)
+st.sidebar.button(
+    translate_text("자전거 위치 정보", target_language="en" if st.session_state.translate else "ko"),
+    on_click=lambda: switch_page("자전거 위치 정보")
+)
+st.sidebar.button(
+    translate_text("관광지 추천", target_language="en" if st.session_state.translate else "ko"),
+    on_click=lambda: switch_page("관광지 추천")
+)
 
 
 # GPS 위치 가져오기 (JavaScript 삽입)
