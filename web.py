@@ -318,20 +318,19 @@ elif st.session_state.current_page == translate_text("자전거 위치 정보", 
     if selected_option == '자전거 대여소':
         selected_data = bike_rental_data
         icon_type = {'icon': 'bicycle', 'color': 'blue'}
-        show_name = translate_text(selected_option, target_language='en')
+        show_name = translated_option_name
     elif selected_option == '도시공원':
         selected_data = park_data
         icon_type = {'icon': 'tree', 'color': 'green'}
-        show_name = translate_text(selected_option, target_language='en')
+        show_name =  translated_option_name
     elif selected_option == '종합 병원':
         selected_data = hospital_data
         icon_type = {'icon': 'hospital', 'color': 'purple'}
-        show_name = translate_text(selected_option, target_language='en')
+        show_name =  translated_option_name
     else:  # 자전거 보관소
         selected_data = bike_storage_data
         icon_type = {'icon': 'lock', 'color': 'red'}
-        show_name = translate_text(selected_option, target_language='en')
-
+        show_name =  translated_option_name
 
     # 지도 생성
     map = folium.Map(location=[35.23164602460444, 129.0838577311402], zoom_start=12)
@@ -347,8 +346,6 @@ elif st.session_state.current_page == translate_text("자전거 위치 정보", 
         # 기존 상태 저장
         original_translate_state = st.session_state.get("translate", False)
         
-        # 번역을 위한 상태 변경 (예시: False로 설정하여 번역 비활성화)
-        st.session_state.translate = False
 
         
       # 팝업 텍스트 설정
@@ -361,10 +358,6 @@ elif st.session_state.current_page == translate_text("자전거 위치 정보", 
             popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
                           f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
                           f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
-
-        # 작업이 끝난 후 원래 상태로 복구
-        st.session_state.translate = original_translate_state
-
         
         # 마커 추가
         folium.Marker(location,
