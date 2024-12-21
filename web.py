@@ -184,7 +184,8 @@ forecast_data = get_forecast()
 st.sidebar.header('현재 부산 날씨')
 st.sidebar.write(f"기온: {temp}°C")
 st.sidebar.write(f"날씨: {weather_description}")
-st.sidebar.image(weather_image, use_container_width=True)
+st.sidebar.image(weather_image, width=200)  # 원하는 너비로 조정
+
 
 # 자전거 타기 좋은 날 판단
 if weather_description in ['clear sky', 'few clouds', 'scattered clouds', 'broken clouds']:
