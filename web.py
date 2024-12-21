@@ -265,7 +265,7 @@ else:
 
 
 # 메인 화면
-if st.session_state.current_page == translate_text("프로젝트 소개", target_language='en'):
+if st.session_state.current_page == '프로젝트 소개':
     st.markdown(
         f"<h1 style='font-size:24px; '>{translate_text('페달이 소개', target_language='en')}</h1>",
         unsafe_allow_html=True
