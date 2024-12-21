@@ -239,6 +239,10 @@ if st.session_state.current_page == '프로젝트 소개':
 # 자전거 위치 정보 화면
 elif st.session_state.current_page == '자전거 위치 정보':
     st.title("부산광역시 자전거 위치 정보")
+    st.markdown(
+        "<h1 style='font-size:36px; color:black;'>부산광역시 자전거 위치 정보</h1>",
+        unsafe_allow_html=True
+    )
 
 
     # 이미지 선택 옵션과 관련된 데이터
@@ -346,14 +350,14 @@ elif st.session_state.current_page == '관광지 추천':
     # 컬럼별 이미지와 버튼 추가
     with col1:
         st.image(image_paths[0], caption=captions[0], use_container_width=True)
-        if st.button("코스 1 상세 보기"):
+        if st.button("동래 코스 보기"):
             st.session_state.selected_image = image_paths[0]
             st.session_state.selected_url = urls[0]
             st.session_state.selected_detail = details[0]
 
     with col2:
         st.image(image_paths[1], caption=captions[1], use_container_width=True)
-        if st.button("코스 2 상세 보기"):
+        if st.button("광안리 코스 보기"):
             st.session_state.selected_image = image_paths[1]
             st.session_state.selected_url = urls[1]
             st.session_state.selected_detail = details[1]
@@ -361,7 +365,7 @@ elif st.session_state.current_page == '관광지 추천':
 
     with col3:
         st.image(image_paths[2], caption=captions[2], use_container_width=True)
-        if st.button("코스 3 상세 보기"):
+        if st.button("기장 코스 보기"):
             st.session_state.selected_image = image_paths[2]
             st.session_state.selected_url = urls[2]
             st.session_state.selected_detail = details[2]
