@@ -11,6 +11,35 @@ import streamlit.components.v1 as components
 import os
 from PIL import Image
 
+###### 번역 테스트
+import streamlit as st
+from googletrans import Translator  # Google Translate API 라이브러리 사용
+
+# 번역기 초기화
+translator = Translator()
+
+# 번역 버튼 상태 관리
+if "translate" not in st.session_state:
+    st.session_state.translate = False
+
+# 번역 버튼
+if st.button("번역하기"):
+    st.session_state.translate = not st.session_state.translate  # 상태 토글
+
+# 번역 함수
+def translate_text(text, target_language="en"):
+    if st.session_state.translate:
+        try:
+            translated = translator.translate(text, dest=target_language)
+            return translated.text
+        except Exception as e:
+            st.error("번역에 실패했습니다.")
+            return text
+    return text
+####### 번역 테스트
+
+
+
 # Streamlit 페이지 설정 (파일 맨 위에서 선언)
 st.set_page_config(page_title="자전거", page_icon='🚴', layout="wide")
 
@@ -363,6 +392,7 @@ elif st.session_state.current_page == '관광지 추천':
             st.session_state.selected_image = image_paths[0]
             st.session_state.selected_url = urls[0]
             st.session_state.selected_detail = details[0]
+            
 
     with col2:
         st.image(image_paths[1], caption=captions[1], use_container_width=True)
