@@ -238,9 +238,8 @@ if st.session_state.current_page == '프로젝트 소개':
 
 # 자전거 위치 정보 화면
 elif st.session_state.current_page == '자전거 위치 정보':
-    st.title("부산광역시 자전거 위치 정보")
     st.markdown(
-        "<h1 style='font-size:36px; color:black;'>부산광역시 자전거 위치 정보</h1>",
+        "<h1 style='font-size:24px; color:black;'>부산광역시 자전거 위치 정보</h1>",
         unsafe_allow_html=True
     )
 
