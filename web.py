@@ -220,17 +220,17 @@ weather_image = Image.open(weather_image_path)
 forecast_data = get_forecast()
 
 # Streamlit 사이드바에 현재 날씨 정보 표시
-st.sidebar.header('현재 부산 날씨')
-st.sidebar.write(f"기온: {temp}°C")
-st.sidebar.write(f"날씨: {weather_description}")
+st.sidebar.header(translate_text('현재 부산 날씨', target_language='en'))
+st.sidebar.write(f"{translate_text('기온', target_language='en')}: {temp}°C")
+st.sidebar.write(f"{translate_text('날씨', target_language='en')}: {translate_text(weather_description, target_language='en')}")
 st.sidebar.image(weather_image, width=100)  # 원하는 너비로 조정
 
 
 # 자전거 타기 좋은 날 판단
 if weather_description in ['clear sky', 'few clouds', 'scattered clouds', 'broken clouds']:
-    st.sidebar.success("자전거 타기 좋은 날이네요!")
+    st.sidebar.success(translate_text("자전거 타기 좋은 날이네요!", target_language='en'))
 else:
-    st.sidebar.warning("자전거 타러 나가는 걸 다시 생각해 보세요!")
+    st.sidebar.warning(translate_text("자전거 타러 나가는 걸 다시 생각해 보세요!", target_language='en'))
 
 
 # 예측된 일기예보에서 자전거 타기 좋은 시간 찾기
