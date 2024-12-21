@@ -265,7 +265,7 @@ else:
 
 
 # 메인 화면
-if st.session_state.current_page == '프로젝트 소개':
+if st.session_state.current_page == translate_text("프로젝트 소개", target_language='en'):
     st.markdown(
         f"<h1 style='font-size:24px; '>{translate_text('페달이 소개', target_language='en')}</h1>",
         unsafe_allow_html=True
@@ -279,7 +279,7 @@ if st.session_state.current_page == '프로젝트 소개':
 
 
 # 자전거 위치 정보 화면
-elif st.session_state.current_page == translate_text("자전거 위치 정보", target_language='en'):
+elif st.session_state.current_page == '자전거 위치 정보':
     st.markdown(
         f"<h1 style='font-size:24px; '>{translate_text('부산광역시 자전거 위치 정보', target_language='en')}</h1>",
         unsafe_allow_html=True
