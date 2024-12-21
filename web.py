@@ -12,7 +12,6 @@ import os
 from PIL import Image
 
 ###### 번역 테스트
-import streamlit as st
 from googletrans import Translator  # Google Translate API 라이브러리 사용
 
 # 번역기 초기화
@@ -37,8 +36,6 @@ def translate_text(text, target_language="en"):
             return text
     return text
 ####### 번역 테스트
-
-
 
 # Streamlit 페이지 설정 (파일 맨 위에서 선언)
 st.set_page_config(page_title="자전거", page_icon='🚴', layout="wide")
