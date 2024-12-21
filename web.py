@@ -341,24 +341,18 @@ elif st.session_state.current_page == translate_text("자전거 위치 정보", 
         kakao_directions_url = (f"https://map.kakao.com/link/to/{place['address']},"
                                 f"{place['latitude']},{place['longitude']}")
 
-        # 다국어 번역을 위한 사전 (예시)
-        translated_text = {
-            'name': '이름',
-            'address': '주소',
-            'get_directions': '길찾기 (카카오맵)',
-            'kakao_directions': '카카오맵에서 길찾기'
-        }
 
-        # 팝업 텍스트 설정
+         # 팝업 텍스트 설정
         if show_name and 'name' in place and place['name'] is not None:
             popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
-                          f"{translated_text['name']}: {place['name']}<br>"
-                          f"{translated_text['address']}: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
-                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)}}</a></div>")
+                          f"이름: {place['name']}<br>"
+                          f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
+                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
         else:
             popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
-                          f"{translated_text['address']}: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
-                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)}}</a></div>")
+                          f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
+                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
+
         
         # 마커 추가
         folium.Marker(location,
