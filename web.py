@@ -265,16 +265,16 @@ if good_times:
     df_good_times = pd.DataFrame(good_times)
     st.sidebar.dataframe(df_good_times)
 else:
-    st.sidebar.write("앞으로 3일 동안 자전거 타기 좋은 시간이 없습니다.")
+    st.sidebar.write(translate_text("앞으로 3일 동안 자전거 타기 좋은 시간이 없습니다.", target_language='en'))
 
 
 # 메인 화면
-if st.session_state.current_page == '프로젝트 소개':
+if st.session_state.current_page == translate_text("프로젝트 소개", target_language='en'):
     st.markdown(
-    "<h1 style='font-size:24px; color:black;'>페달이 소개</h1>",
-    unsafe_allow_html=True
+        f"<h1 style='font-size:24px; color:black;'>{translate_text('페달이 소개', target_language='en')}</h1>",
+        unsafe_allow_html=True
     )
-    
+
     
     # 이미지 경로와 설명
     st.image("images/home1.png",  use_container_width=True)
@@ -282,9 +282,9 @@ if st.session_state.current_page == '프로젝트 소개':
 
 
 # 자전거 위치 정보 화면
-elif st.session_state.current_page == '자전거 위치 정보':
+elif st.session_state.current_page == translate_text("자전거 위치 정보", target_language='en'):
     st.markdown(
-        "<h1 style='font-size:24px; color:black;'>부산광역시 자전거 위치 정보</h1>",
+        f"<h1 style='font-size:24px; color:black;'>{translate_text('부산광역시 자전거 위치 정보', target_language='en')}</h1>",
         unsafe_allow_html=True
     )
 
@@ -310,7 +310,7 @@ elif st.session_state.current_page == '자전거 위치 정보':
     selected_option = list(option_images.keys())[selected_option_index]
 
     # 선택된 옵션에 대한 정보 출력
-    st.write(f"**{selected_option}** 위치 정보")
+    st.write(f"**{translated_option_name}** 위치 정보")
 
     # 데이터 로드 (각각의 데이터는 이미 파일에서 로드되어 있음)
     if selected_option == '자전거 대여소':
@@ -341,21 +341,47 @@ elif st.session_state.current_page == '자전거 위치 정보':
         kakao_directions_url = (f"https://map.kakao.com/link/to/{place['address']},"
                                 f"{place['latitude']},{place['longitude']}")
 
+        # 다국어 번역을 위한 사전 (예시)
+        translated_text = {
+            'name': '이름',
+            'address': '주소',
+            'get_directions': '길찾기 (카카오맵)',
+            'kakao_directions': '카카오맵에서 길찾기'
+        }
+        
         # 팝업 텍스트 설정
         if show_name and 'name' in place and place['name'] is not None:
             popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
-                          f"이름: {place['name']}<br>"
-                          f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
-                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
+                          f"{translated_text['name']}: {place['name']}<br>"
+                          f"{translated_text['address']}: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
+                          f"<a href='{kakao_directions_url}' target='_blank'>{translated_text['kakao_directions']}</a></div>")
         else:
             popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
-                          f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
-                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
-
+                          f"{translated_text['address']}: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
+                          f"<a href='{kakao_directions_url}' target='_blank'>{translated_text['kakao_directions']}</a></div>")
+        
+        # 마커 추가
         folium.Marker(location,
                       popup=folium.Popup(popup_text, max_width=300),
                       icon=folium.Icon(icon=icon_type['icon'], color=icon_type['color'],
                                        prefix='fa')).add_to(map)
+
+
+        # 팝업 텍스트 설정
+       # if show_name and 'name' in place and place['name'] is not None:
+        #    popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
+         #                 f"이름: {place['name']}<br>"
+          #                f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
+         #                 f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
+     #   else:
+       #     popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
+      #                    f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
+        #                  f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
+
+     #   folium.Marker(location,
+      #                popup=folium.Popup(popup_text, max_width=300),
+       ##               icon=folium.Icon(icon=icon_type['icon'], color=icon_type['color'],
+         #                              prefix='fa')).add_to(map)
 
     # 지도 표시
     st_folium(map, height=700, width=1000)
