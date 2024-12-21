@@ -39,6 +39,9 @@ def translate_text(text, target_language="en"):
             return text
     return text
 
+if st.button("번역하기"):
+    st.session_state.translate = not st.session_state.translate  # 상태 토글
+    st.experimental_rerun()  # 페이지를 강제 새로 고침
 
 ####### 번역 테스트
 
