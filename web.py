@@ -27,6 +27,7 @@ if "translate" not in st.session_state:
 # 번역 버튼
 if st.button("번역하기"):
     st.session_state.translate = not st.session_state.translate  # 상태 토글
+    st.experimental_rerun()  # 페이지를 강제 새로 고침
 
 # 번역 함수
 def translate_text(text, target_language="en"):
@@ -38,10 +39,6 @@ def translate_text(text, target_language="en"):
             st.error("번역에 실패했습니다.")
             return text
     return text
-
-if st.button("번역하기"):
-    st.session_state.translate = not st.session_state.translate  # 상태 토글
-    st.experimental_rerun()  # 페이지를 강제 새로 고침
 
 ####### 번역 테스트
 
