@@ -231,6 +231,12 @@ else:
 
 # 메인 화면
 if st.session_state.current_page == '프로젝트 소개':
+    st.markdown(
+    "<h1 style='font-size:24px; color:black;'>페달이 소개</h1>",
+    unsafe_allow_html=True
+    )
+    
+    
     # 이미지 경로와 설명
     st.image("images/home1.png",  use_container_width=True)
     st.image("images/home2.png",  use_container_width=True)
@@ -319,7 +325,11 @@ elif st.session_state.current_page == '자전거 위치 정보':
 
 # 화면 3
 elif st.session_state.current_page == '관광지 추천':
-    st.title("관광지 추천 및 경로")
+
+    st.markdown(
+    "<h1 style='font-size:24px; color:black;'>관광지 추천 및 경로</h1>",
+    unsafe_allow_html=True
+    )
     
 
 
