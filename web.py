@@ -61,7 +61,7 @@ def switch_page(page_name):
     st.session_state.current_page = page_name
 
 # 사이드바 버튼
-st.sidebar.title("페달이 프로젝트")
+st.sidebar.title(translate_text("페달이 프로젝트", target_language="en" if st.session_state.translate else "ko"))
 st.sidebar.button(
     translate_text("프로젝트 소개", target_language="en" if st.session_state.translate else "ko"),
     on_click=lambda: switch_page("프로젝트 소개")
