@@ -271,7 +271,7 @@ else:
 # 메인 화면
 if st.session_state.current_page == translate_text("프로젝트 소개", target_language='en'):
     st.markdown(
-        f"<h1 style='font-size:24px; color:black;'>{translate_text('페달이 소개', target_language='en')}</h1>",
+        f"<h1 style='font-size:24px; '>{translate_text('페달이 소개', target_language='en')}</h1>",
         unsafe_allow_html=True
     )
 
@@ -284,7 +284,7 @@ if st.session_state.current_page == translate_text("프로젝트 소개", target
 # 자전거 위치 정보 화면
 elif st.session_state.current_page == translate_text("자전거 위치 정보", target_language='en'):
     st.markdown(
-        f"<h1 style='font-size:24px; color:black;'>{translate_text('부산광역시 자전거 위치 정보', target_language='en')}</h1>",
+        f"<h1 style='font-size:24px; '>{translate_text('부산광역시 자전거 위치 정보', target_language='en')}</h1>",
         unsafe_allow_html=True
     )
 
@@ -375,7 +375,7 @@ elif st.session_state.current_page == translate_text("자전거 위치 정보", 
 elif st.session_state.current_page == '관광지 추천':
 
     st.markdown(
-    "<h1 style='font-size:24px; color:black;'>관광지 추천 및 경로</h1>",
+    "<h1 style='font-size:24px;'>관광지 추천 및 경로</h1>",
     unsafe_allow_html=True
     )
     
@@ -438,7 +438,6 @@ elif st.session_state.current_page == '관광지 추천':
                 <button style="
                     padding: 10px 20px; 
                     font-size: 16px; 
-                    color: black; 
                     background-color: #FFFFFF; 
                     border: 0.5px solid #D6D6D6;
                     border-radius: 10px; 
