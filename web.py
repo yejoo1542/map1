@@ -247,11 +247,11 @@ def find_good_biking_time(forecast_data, days=3):
         weather_description = forecast['weather'][0]['description']
         if  weather_description in ['clear sky', 'few clouds', 'scattered clouds', 'broken clouds']:
             good_times.append({
-                "날짜": forecast_time.strftime('%Y-%m-%d'),
-                "요일": forecast_time.strftime('%A'),
-                "시간": forecast_time.strftime('%H:%M'),
-                "기온 (°C)": temp,
-                "날씨 설명": weather_description
+                translate_text("날짜", target_language='en'): forecast_time.strftime('%Y-%m-%d'),
+                translate_text("요일", target_language='en'): forecast_time.strftime('%A'),
+                translate_text("시간", target_language='en'): forecast_time.strftime('%H:%M'),
+                translate_text("기온 (°C)", target_language='en'): temp,
+                translate_text("날씨 설명", target_language='en'): weather_description
             })
     return good_times
 
