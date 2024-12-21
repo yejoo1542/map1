@@ -306,12 +306,15 @@ elif st.session_state.current_page == translate_text("자전거 위치 정보", 
         return_value="index"  # 선택된 이미지의 인덱스를 반환
     )
 
-    # 선택된 옵션 이름
+        # 선택된 옵션 이름
     selected_option = list(option_images.keys())[selected_option_index]
-
+    
+    # 번역된 옵션 이름 가져오기
+    translated_option_name = translate_text(selected_option, target_language='en')
+    
     # 선택된 옵션에 대한 정보 출력
     st.write(f"**{translated_option_name}** 위치 정보")
-
+    
     # 데이터 로드 (각각의 데이터는 이미 파일에서 로드되어 있음)
     if selected_option == '자전거 대여소':
         selected_data = bike_rental_data
@@ -329,6 +332,7 @@ elif st.session_state.current_page == translate_text("자전거 위치 정보", 
         selected_data = bike_storage_data
         icon_type = {'icon': 'lock', 'color': 'red'}
         show_name = False
+
 
     # 지도 생성
     map = folium.Map(location=[35.23164602460444, 129.0838577311402], zoom_start=12)
