@@ -375,10 +375,15 @@ elif st.session_state.current_page == translate_text("자전거 위치 정보", 
 elif st.session_state.current_page == '관광지 추천':
 
 
+    # 먼저 번역된 텍스트를 변수에 할당합니다.
+    translated_text = translate_text("관광지 추천 및 경로", target_language='en')
+    
+    # 번역된 텍스트를 HTML에 포함시킵니다.
     st.markdown(
-    "<h1 style='font-size:24px;'>translate_text("관광지 추천 및 경로", target_language='en')</h1>",
-    unsafe_allow_html=True
+        f"<h1 style='font-size:24px;'>{translated_text}</h1>",
+        unsafe_allow_html=True
     )
+
     
 
 
