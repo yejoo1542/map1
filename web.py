@@ -374,8 +374,11 @@ elif st.session_state.current_page == translate_text("자전거 위치 정보", 
 # 화면 3
 elif st.session_state.current_page == '관광지 추천':
 
+    # 번역된 텍스트 설정
+    title1 = translate_text("관광지 추천 및 경로", target_language='en')
+
     st.markdown(
-    "<h1 style='font-size:24px;'>translate_text("관광지 추천 및 경로", target_language='en')</h1>",
+    "<h1 style='font-size:24px;'>{title1}</h1>",
     unsafe_allow_html=True
     )
     
