@@ -378,7 +378,7 @@ elif st.session_state.current_page == '관광지 추천':
     title1 = translate_text("관광지 추천 및 경로", target_language='en')
 
     st.markdown(
-    "<h1 style='font-size:24px;'>{title1}</h1>",
+    "<h1 style='font-size:24px;'>title1</h1>",
     unsafe_allow_html=True
     )
     
