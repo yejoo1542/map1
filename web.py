@@ -348,22 +348,24 @@ elif st.session_state.current_page == translate_text("자전거 위치 정보", 
             'get_directions': '길찾기 (카카오맵)',
             'kakao_directions': '카카오맵에서 길찾기'
         }
-        
+
         # 팝업 텍스트 설정
         if show_name and 'name' in place and place['name'] is not None:
             popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
                           f"{translated_text['name']}: {place['name']}<br>"
                           f"{translated_text['address']}: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
-                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)}</a></div>")
+                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)}}</a></div>")
         else:
             popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
                           f"{translated_text['address']}: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
-                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
+                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)}}</a></div>")
         
+        # 마커 추가
         folium.Marker(location,
                       popup=folium.Popup(popup_text, max_width=300),
                       icon=folium.Icon(icon=icon_type['icon'], color=icon_type['color'],
                                        prefix='fa')).add_to(map)
+        
 
     # 지도 표시
     st_folium(map, height=700, width=1000)
