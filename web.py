@@ -65,7 +65,7 @@ if st.session_state.latitude and st.session_state.longitude:
 
 
 # JavaScript에서 위치 정보를 가져오는 콜백
-msg = st.query_params()
+msg = st.experimental_get_query_params()
 if "latitude" in msg and "longitude" in msg:
     st.session_state.latitude = msg["latitude"][0]
     st.session_state.longitude = msg["longitude"][0]
