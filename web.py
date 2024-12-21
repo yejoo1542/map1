@@ -345,7 +345,13 @@ elif st.session_state.current_page == translate_text("자전거 위치 정보", 
         kakao_directions_url = (f"https://map.kakao.com/link/to/{place['address']},"
                                 f"{place['latitude']},{place['longitude']}")
 
+        # 기존 상태 저장
+        original_translate_state = st.session_state.get("translate", False)
+        
+        # 번역을 위한 상태 변경 (예시: False로 설정하여 번역 비활성화)
+        st.session_state.translate = False
 
+        
       # 팝업 텍스트 설정
         if show_name and 'name' in place and place['name'] is not None:
             popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
@@ -357,6 +363,8 @@ elif st.session_state.current_page == translate_text("자전거 위치 정보", 
                           f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
                           f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
 
+        # 작업이 끝난 후 원래 상태로 복구
+        st.session_state.translate = original_translate_state
 
         
         # 마커 추가
