@@ -319,19 +319,19 @@ elif st.session_state.current_page == translate_text("자전거 위치 정보", 
     if selected_option == '자전거 대여소':
         selected_data = bike_rental_data
         icon_type = {'icon': 'bicycle', 'color': 'blue'}
-        show_name = True
+        show_name = translate_text(selected_option, target_language='en')
     elif selected_option == '도시공원':
         selected_data = park_data
         icon_type = {'icon': 'tree', 'color': 'green'}
-        show_name = True
+        show_name = translate_text(selected_option, target_language='en')
     elif selected_option == '종합 병원':
         selected_data = hospital_data
         icon_type = {'icon': 'hospital', 'color': 'purple'}
-        show_name = True
+        show_name = translate_text(selected_option, target_language='en')
     else:  # 자전거 보관소
         selected_data = bike_storage_data
         icon_type = {'icon': 'lock', 'color': 'red'}
-        show_name = False
+        show_name = translate_text(selected_option, target_language='en')
 
 
     # 지도 생성
@@ -346,7 +346,7 @@ elif st.session_state.current_page == translate_text("자전거 위치 정보", 
                                 f"{place['latitude']},{place['longitude']}")
 
 
-         # 팝업 텍스트 설정
+      # 팝업 텍스트 설정
         if show_name and 'name' in place and place['name'] is not None:
             popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
                           f"이름: {place['name']}<br>"
@@ -356,6 +356,7 @@ elif st.session_state.current_page == translate_text("자전거 위치 정보", 
             popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
                           f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
                           f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
+
 
         
         # 마커 추가
