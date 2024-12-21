@@ -170,9 +170,6 @@ with open('부산광역시_종합병원 현황_20230927.csv', newline='', encodi
         hospital_data.append(entry)
 
 
-
-
-
 # 현재 부산의 날씨 정보를 가져오는 함수
 def get_current_weather():
     url = f"http://api.openweathermap.org/data/2.5/weather?lat=35.1796&lon=129.0756&appid=7abbc2847b7691c9ab5da95f24166c8e&units=metric"
@@ -280,96 +277,8 @@ if st.session_state.current_page == translate_text("프로젝트 소개", target
     st.image("images/home2.png",  use_container_width=True)
 
 
-# 자전거 위치 정보 화면
-elif st.session_state.current_page == translate_text("자전거 위치 정보", target_language='en'):
-    st.markdown(
-        f"<h1 style='font-size:24px; '>{translate_text('부산광역시 자전거 위치 정보', target_language='en')}</h1>",
-        unsafe_allow_html=True
-    )
 
-
-    # 이미지 선택 옵션과 관련된 데이터
-    option_images = {
-        "자전거 대여소": "images/2.png",
-        "도시공원": "images/3.png",
-        "자전거 보관소": "images/4.png",
-        "종합 병원": "images/5.png"
-    }
-
-    # 이미지 선택 위젯
-    selected_option_index = image_select(
-        " ",
-        images=list(option_images.values()),  # 이미지 리스트
-        captions=list(option_images.keys()),  # 각 이미지에 대한 캡션
-        index=0,  # 기본 선택 (0번째 옵션)
-        return_value="index"  # 선택된 이미지의 인덱스를 반환
-    )
-
-        # 선택된 옵션 이름
-    selected_option = list(option_images.keys())[selected_option_index]
-    
-    # 번역된 옵션 이름 가져오기
-    translated_option_name = translate_text(selected_option, target_language='en')
-    
-    # 선택된 옵션에 대한 정보 출력
-    st.write(f"**{translated_option_name}** 위치 정보")
-    
-    # 데이터 로드 (각각의 데이터는 이미 파일에서 로드되어 있음)
-    if selected_option == '자전거 대여소':
-        selected_data = bike_rental_data
-        icon_type = {'icon': 'bicycle', 'color': 'blue'}
-        show_name = translated_option_name
-    elif selected_option == '도시공원':
-        selected_data = park_data
-        icon_type = {'icon': 'tree', 'color': 'green'}
-        show_name =  translated_option_name
-    elif selected_option == '종합 병원':
-        selected_data = hospital_data
-        icon_type = {'icon': 'hospital', 'color': 'purple'}
-        show_name =  translated_option_name
-    else:  # 자전거 보관소
-        selected_data = bike_storage_data
-        icon_type = {'icon': 'lock', 'color': 'red'}
-        show_name =  translated_option_name
-
-    # 지도 생성
-    map = folium.Map(location=[35.23164602460444, 129.0838577311402], zoom_start=12)
-    plugins.LocateControl().add_to(map)
-
-    # 선택된 데이터를 지도에 추가
-    for place in selected_data:
-        location = [place['latitude'], place['longitude']]
-
-        kakao_directions_url = (f"https://map.kakao.com/link/to/{place['address']},"
-                                f"{place['latitude']},{place['longitude']}")
-
-        # 기존 상태 저장
-        original_translate_state = st.session_state.get("translate", False)
-        
-
-        
-      # 팝업 텍스트 설정
-        if show_name and 'name' in place and place['name'] is not None:
-            popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
-                          f"이름: {place['name']}<br>"
-                          f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
-                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
-        else:
-            popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
-                          f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
-                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
-        
-        # 마커 추가
-        folium.Marker(location,
-                      popup=folium.Popup(popup_text, max_width=300),
-                      icon=folium.Icon(icon=icon_type['icon'], color=icon_type['color'],
-                                       prefix='fa')).add_to(map)
-        
-
-    # 지도 표시
-    st_folium(map, height=700, width=1000)
-
-
+##################################화면 2 넣어야됨
 
 # 화면 3
 elif st.session_state.current_page == '관광지 추천':
@@ -383,11 +292,6 @@ elif st.session_state.current_page == '관광지 추천':
         f"<h1 style='font-size:24px;'>{translated_text}</h1>",
         unsafe_allow_html=True
     )
-
-    
-
-
-
     
     # URL 정의
     url1 = 'https://kko.kakao.com/1_de9FgI47'
