@@ -397,7 +397,9 @@ elif st.session_state.current_page == '관광지 추천':
 
     # 이미지와 URL 설정
     image_paths = ["images/title1.jpg", "images/title2.png", "images/title3.png"]
-    captions = [translate_text("동래", target_language='en'), translate_text("광안리", target_language='en'), translate_text("기장", target_language='en')]
+    # 번역된 캡션
+    captions_kr = ["동래", "광안리", "기장"]  # 한글 캡션
+    captions_en = ["Dongnae", "Gwangalli", "Gijang"]  # 영어 캡션
     urls = ["https://kko.kakao.com/1_de9FgI47", "https://kko.kakao.com/qq3xXZX0XT", "https://kko.kakao.com/7alrtOKbX3"]
     details = ["images/detail1.png", "images/detail2.png", "images/detail3.png"]
 
