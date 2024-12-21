@@ -65,7 +65,7 @@ if st.session_state.latitude and st.session_state.longitude:
 
 
 # JavaScript에서 위치 정보를 가져오는 콜백
-msg = st.experimental_get_query_params()
+msg = st.query_params()
 if "latitude" in msg and "longitude" in msg:
     st.session_state.latitude = msg["latitude"][0]
     st.session_state.longitude = msg["longitude"][0]
@@ -184,7 +184,7 @@ forecast_data = get_forecast()
 st.sidebar.header('현재 부산 날씨')
 st.sidebar.write(f"기온: {temp}°C")
 st.sidebar.write(f"날씨: {weather_description}")
-st.sidebar.image(weather_image, use_column_width=True)
+st.sidebar.image(weather_image, use_container_width=True)
 
 # 자전거 타기 좋은 날 판단
 if weather_description in ['clear sky', 'few clouds', 'scattered clouds', 'broken clouds']:
@@ -231,8 +231,8 @@ else:
 # 메인 화면
 if st.session_state.current_page == '프로젝트 소개':
     # 이미지 경로와 설명
-    st.image("images/home1.png",  use_column_width=True)
-    st.image("images/home2.png",  use_column_width=True)
+    st.image("images/home1.png",  use_container_width=True)
+    st.image("images/home2.png",  use_container_width=True)
 
 
 # 자전거 위치 정보 화면
@@ -344,14 +344,14 @@ elif st.session_state.current_page == '관광지 추천':
     
     # 컬럼별 이미지와 버튼 추가
     with col1:
-        st.image(image_paths[0], caption=captions[0], use_column_width=True)
+        st.image(image_paths[0], caption=captions[0], use_container_width=True)
         if st.button("코스 1 상세 보기"):
             st.session_state.selected_image = image_paths[0]
             st.session_state.selected_url = urls[0]
             st.session_state.selected_detail = details[0]
 
     with col2:
-        st.image(image_paths[1], caption=captions[1], use_column_width=True)
+        st.image(image_paths[1], caption=captions[1], use_container_width=True)
         if st.button("코스 2 상세 보기"):
             st.session_state.selected_image = image_paths[1]
             st.session_state.selected_url = urls[1]
@@ -359,7 +359,7 @@ elif st.session_state.current_page == '관광지 추천':
 
 
     with col3:
-        st.image(image_paths[2], caption=captions[2], use_column_width=True)
+        st.image(image_paths[2], caption=captions[2], use_container_width=True)
         if st.button("코스 3 상세 보기"):
             st.session_state.selected_image = image_paths[2]
             st.session_state.selected_url = urls[2]
@@ -369,7 +369,7 @@ elif st.session_state.current_page == '관광지 추천':
     # HTML + CSS 애니메이션 추가
     # HTML + CSS 애니메이션 추가
     if st.session_state.selected_image:
-        st.image(st.session_state.selected_detail,  use_column_width=True)
+        st.image(st.session_state.selected_detail,  use_container_width=True)
         st.markdown(f"""
             <a href="{st.session_state.selected_url}" target="_blank">
                 <button style="
