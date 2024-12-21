@@ -412,35 +412,31 @@ elif st.session_state.current_page == '관광지 추천':
     # 각 줄에 3개씩 이미지와 버튼 배치
     col1, col2, col3 = st.columns([1, 1, 1])
     
-    # 컬럼별 이미지와 버튼 추가
+     # 컬럼별 이미지와 버튼 추가
     with col1:
-        st.image(image_paths[0], caption=captions[0], use_container_width=True)
+        st.image(image_paths[0], caption=captions_en[0] if st.session_state.translate else captions_kr[0], use_container_width=True)
         if st.button("동래 코스 보기"):
             st.session_state.selected_image = image_paths[0]
             st.session_state.selected_url = urls[0]
             st.session_state.selected_detail = details[0]
-            
-
+    
     with col2:
-        st.image(image_paths[1], caption=captions[1], use_container_width=True)
+        st.image(image_paths[1], caption=captions_en[1] if st.session_state.translate else captions_kr[1], use_container_width=True)
         if st.button("광안리 코스 보기"):
             st.session_state.selected_image = image_paths[1]
             st.session_state.selected_url = urls[1]
             st.session_state.selected_detail = details[1]
-
-
+    
     with col3:
-        st.image(image_paths[2], caption=captions[2], use_container_width=True)
+        st.image(image_paths[2], caption=captions_en[2] if st.session_state.translate else captions_kr[2], use_container_width=True)
         if st.button("기장 코스 보기"):
             st.session_state.selected_image = image_paths[2]
             st.session_state.selected_url = urls[2]
             st.session_state.selected_detail = details[2]
-
-
-    # HTML + CSS 애니메이션 추가
+    
     # HTML + CSS 애니메이션 추가
     if st.session_state.selected_image:
-        st.image(st.session_state.selected_detail,  use_container_width=True)
+        st.image(st.session_state.selected_detail, use_container_width=True)
         st.markdown(f"""
             <a href="{st.session_state.selected_url}" target="_blank">
                 <button style="
@@ -453,4 +449,4 @@ elif st.session_state.current_page == '관광지 추천':
                     경로 안내
                 </button>
             </a>
-""", unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
