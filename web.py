@@ -411,25 +411,28 @@ elif st.session_state.current_page == '관광지 추천':
     
     # 각 줄에 3개씩 이미지와 버튼 배치
     col1, col2, col3 = st.columns([1, 1, 1])
+    # 버튼 텍스트 설정 (번역 상태에 따라 변경)
+    button_text_kr = ["동래 코스 보기", "광안리 코스 보기", "기장 코스 보기"]
+    button_text_en = ["Dongnae Course", "Gwangalli Course", "Gijang Course"]
     
-     # 컬럼별 이미지와 버튼 추가
+    # 컬럼별 이미지와 버튼 추가
     with col1:
         st.image(image_paths[0], caption=captions_en[0] if st.session_state.translate else captions_kr[0], use_container_width=True)
-        if st.button("동래 코스 보기"):
+        if st.button(button_text_en[0] if st.session_state.translate else button_text_kr[0]):
             st.session_state.selected_image = image_paths[0]
             st.session_state.selected_url = urls[0]
             st.session_state.selected_detail = details[0]
     
     with col2:
         st.image(image_paths[1], caption=captions_en[1] if st.session_state.translate else captions_kr[1], use_container_width=True)
-        if st.button("광안리 코스 보기"):
+        if st.button(button_text_en[1] if st.session_state.translate else button_text_kr[1]):
             st.session_state.selected_image = image_paths[1]
             st.session_state.selected_url = urls[1]
             st.session_state.selected_detail = details[1]
     
     with col3:
         st.image(image_paths[2], caption=captions_en[2] if st.session_state.translate else captions_kr[2], use_container_width=True)
-        if st.button("기장 코스 보기"):
+        if st.button(button_text_en[2] if st.session_state.translate else button_text_kr[2]):
             st.session_state.selected_image = image_paths[2]
             st.session_state.selected_url = urls[2]
             st.session_state.selected_detail = details[2]
@@ -446,7 +449,7 @@ elif st.session_state.current_page == '관광지 추천':
                     border: 0.5px solid #D6D6D6;
                     border-radius: 10px; 
                     cursor: pointer;">
-                    경로 안내
+                    { 'Route Guide' if st.session_state.translate else '경로 안내' }
                 </button>
             </a>
         """, unsafe_allow_html=True)
