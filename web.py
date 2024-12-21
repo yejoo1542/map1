@@ -73,7 +73,7 @@ def switch_page(page_name):
 
 # 페이지 선택 UI
 st.sidebar.title("페달이 프로젝트")
-st.sidebar.button("프로젝트 소개", on_click=lambda: switch_page("프로젝트 소개"))
+st.sidebar.button(translate_text("프로젝트 소개", target_language="en" if st.session_state.translate else "ko", on_click=lambda: switch_page("프로젝트 소개"))
 st.sidebar.button("자전거 위치 정보", on_click=lambda: switch_page("자전거 위치 정보"))
 st.sidebar.button("관광지 추천", on_click=lambda: switch_page("관광지 추천"))
 
