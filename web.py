@@ -260,7 +260,7 @@ def find_good_biking_time(forecast_data, days=3):
 good_times = find_good_biking_time(forecast_data, days=3)
 
 # Streamlit에 자전거 타기 좋은 시간대를 표로 표시
-st.sidebar.header('자전거 타기 추천 시간 (다음 3일)')
+st.sidebar.header(translate_text("자전거 타기 추천 시간 (다음 3일)", target_language='en'))
 if good_times:
     df_good_times = pd.DataFrame(good_times)
     st.sidebar.dataframe(df_good_times)
