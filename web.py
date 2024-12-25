@@ -271,10 +271,14 @@ if st.session_state.current_page == '프로젝트 소개':
         unsafe_allow_html=True
     )
 
-    
-    # 이미지 경로와 설명
-    st.image("images/home1.png",  use_container_width=True)
-    st.image("images/home2.png",  use_container_width=True)
+        # 언어에 따른 이미지 분기
+    if st.session_state.language == "ko":  # 한국어일 때
+        st.image("images/home1.png", use_container_width=True)
+        st.image("images/home2.png", use_container_width=True)
+    else:  # 영어일 때
+        st.image("images/main_image_1.png", use_container_width=True)
+        st.image("images/main_image_2.png", use_container_width=True)
+
 
 
 
