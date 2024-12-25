@@ -310,7 +310,8 @@ elif st.session_state.current_page == '자전거 위치 정보':
     translated_option_name = translate_text(selected_option, target_language='en')
     translated_information = translate_text('위치 정보', target_language='en')
     # 선택된 옵션에 대한 정보 출력
-    st.write(f"**{translated_option_name & translated_information}**")
+    st.write(f"**{translated_option_name + ' ' + translated_information}**")
+
     
     # 데이터 로드 (각각의 데이터는 이미 파일에서 로드되어 있음)
     if selected_option == '자전거 대여소':
