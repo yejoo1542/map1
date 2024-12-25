@@ -358,17 +358,24 @@ elif st.session_state.current_page == '자전거 위치 정보':
         original_translate_state = st.session_state.get("translate", False)
         
 
+            # 팝업 텍스트 설정 (번역 포함)
+    if show_name and 'name' in place and place['name'] is not None:
+        popup_text_korean = (f"<div style='font-family:sans-serif; font-size:14px;'>"
+                             f"이름: {place['name']}<br>"
+                             f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
+                             f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
+        # 텍스트 번역 (한국어에서 영어로)
+        popup_text_english = translate_text(popup_text_korean, target_language="en")
+        popup_text = popup_text_english  # 필요한 언어로 설정
+    else:
+        popup_text_korean = (f"<div style='font-family:sans-serif; font-size:14px;'>"
+                             f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
+                             f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
+        # 텍스트 번역
+        popup_text_english = translate_text(popup_text_korean, target_language="en")
+        popup_text = popup_text_english
         
-      # 팝업 텍스트 설정
-        if show_name and 'name' in place and place['name'] is not None:
-            popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
-                          f"이름: {place['name']}<br>"
-                          f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
-                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
-        else:
-            popup_text = (f"<div style='font-family:sans-serif; font-size:14px;'>"
-                          f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
-                          f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
+
         
         # 마커 추가
         folium.Marker(location,
