@@ -276,8 +276,8 @@ if st.session_state.current_page == '프로젝트 소개':
         st.image("images/home1.png", use_container_width=True)
         st.image("images/home2.png", use_container_width=True)
     else:  # 영어일 때
-        st.image("images/main_image_1.png", use_container_width=True)
-        st.image("images/main_image_2.png", use_container_width=True)
+        st.image("images/main_image_1.jpg", use_container_width=True)
+        st.image("images/main_image_2.jpg", use_container_width=True)
 
 
 
