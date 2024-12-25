@@ -356,25 +356,41 @@ elif st.session_state.current_page == '자전거 위치 정보':
 
         # 기존 상태 저장
         original_translate_state = st.session_state.get("translate", False)
-        
 
-                # 팝업 텍스트 설정 (번역 포함)
+                # HTML 텍스트 번역 함수 정의
+        def translate_html_content(html_content, target_language="en"):
+            try:
+                # BeautifulSoup으로 HTML 파싱
+                soup = BeautifulSoup(html_content, "html.parser")
+                
+                # 텍스트만 추출해서 번역
+                for element in soup.find_all(text=True):
+                    if element.parent.name not in ["a", "href"]:  # 링크 및 태그는 제외
+                        translated_text = translator.translate(element, dest=target_language).text
+                        element.replace_with(translated_text)
+                
+                # 번역된 HTML 반환
+                return str(soup)
+            except Exception as e:
+                print(f"Translation error: {e}")
+                return html_content
+        
+        # 팝업 텍스트 설정 (번역 포함)
         if show_name and 'name' in place and place['name'] is not None:
             popup_text_korean = (f"<div style='font-family:sans-serif; font-size:14px;'>"
                                  f"이름: {place['name']}<br>"
                                  f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
                                  f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
-            # 텍스트 번역 (한국어에서 영어로)
-            popup_text_english = translate_text(popup_text_korean, target_language="en")
-            popup_text = popup_text_english  # 필요한 언어로 설정
+            # HTML 텍스트 번역
+            popup_text = translate_html_content(popup_text_korean, target_language="en")
         else:
             popup_text_korean = (f"<div style='font-family:sans-serif; font-size:14px;'>"
                                  f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
                                  f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
-            # 텍스트 번역
-            popup_text_english = translate_text(popup_text_korean, target_language="en")
-            popup_text = popup_text_english
+            # HTML 텍스트 번역
+            popup_text = translate_html_content(popup_text_korean, target_language="en")
 
+              
 
         
         # 마커 추가
