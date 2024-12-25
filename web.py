@@ -17,6 +17,7 @@ from googletrans import Translator  # Google Translate API 라이브러리 사�
 # Streamlit 페이지 설정 (파일 맨 위에서 선언)
 st.set_page_config(page_title="자전거", page_icon='🚴', layout="wide")
 
+
 # 번역기 초기화
 translator = Translator()
 
@@ -270,9 +271,8 @@ if st.session_state.current_page == '프로젝트 소개':
         f"<h1 style='font-size:24px; '>{translate_text('페달이 소개', target_language='en')}</h1>",
         unsafe_allow_html=True
     )
-
         # 언어에 따른 이미지 분기
-    if st.session_state.language == "ko":  # 한국어일 때
+    if not st.session_state.translate:  # 한글 상태일 때
         st.image("images/home1.png", use_container_width=True)
         st.image("images/home2.png", use_container_width=True)
     else:  # 영어일 때
