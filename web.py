@@ -298,7 +298,7 @@ elif st.session_state.current_page == '자전거 위치 정보':
     selected_option_index = image_select(
         " ",
         images=list(option_images.values()),  # 이미지 리스트
-        captions=list(translate_text(option_images.keys(), target_language='en'))  # 각 이미지에 대한 캡션
+        captions=list(translate_text(option_images.keys(), target_language='en')),  # 각 이미지에 대한 캡션
         index=0,  # 기본 선택 (0번째 옵션)
         return_value="index"  # 선택된 이미지의 인덱스를 반환
     )
