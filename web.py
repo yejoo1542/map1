@@ -373,7 +373,11 @@ elif st.session_state.current_page == '자전거 위치 정보':
             except Exception as e:
                 print(f"Translation error: {e}")
                 return html_content
-        
+                
+                # Streamlit에서 번역 상태를 관리하기 위한 변수 초기화
+        if "translate" not in st.session_state:
+            st.session_state.translate = False
+       
         # 팝업 텍스트 설정 (번역 포함)
         if show_name and 'name' in place and place['name'] is not None:
             popup_text_korean = (f"<div style='font-family:sans-serif; font-size:14px;'>"
