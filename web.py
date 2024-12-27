@@ -26,7 +26,7 @@ if "translate" not in st.session_state:
     st.session_state.translate = False  # False: 한글, True: 영어
 
 # 번역 버튼
-if st.button("번역하기"):
+if st.button("번역하기/Translating"):
     st.session_state.translate = not st.session_state.translate  # 상태 토글
 
 # 번역 함수
@@ -429,13 +429,20 @@ elif st.session_state.current_page == '관광지 추천':
     captions_kr = ["동래", "광안리", "기장"]  # 한글 캡션
     captions_en = ["Dongnae", "Gwangalli", "Gijang"]  # 영어 캡션
     urls = ["https://kko.kakao.com/1_de9FgI47", "https://kko.kakao.com/qq3xXZX0XT", "https://kko.kakao.com/7alrtOKbX3"]
-    details = ["images/detail1.png", "images/detail2.png", "images/detail3.png"]
-
+    # 디테일 이미지 리스트
+    details_kr = ["images/detail1.png", "images/detail2.png", "images/detail3.png"]
+    details_en = ["images/detail_en1.png", "images/detail_en2.png", "images/detail_en3.png"]
+    
     # 상태 초기화
     if "selected_image" not in st.session_state:
         st.session_state.selected_image = None
         st.session_state.selected_url = None
         st.session_state.selected_detail = None
+
+
+    # 번역 상태에 따른 디테일 이미지 선택
+    current_details = details_en if st.session_state.translate else details_kr
+
     
     # 각 줄에 3개씩 이미지와 버튼 배치
     col1, col2, col3 = st.columns([1, 1, 1])
@@ -449,21 +456,21 @@ elif st.session_state.current_page == '관광지 추천':
         if st.button(button_text_en[0] if st.session_state.translate else button_text_kr[0]):
             st.session_state.selected_image = image_paths[0]
             st.session_state.selected_url = urls[0]
-            st.session_state.selected_detail = details[0]
+            st.session_state.selected_detail = current_details[0]
     
     with col2:
         st.image(image_paths[1], caption=captions_en[1] if st.session_state.translate else captions_kr[1], use_container_width=True)
         if st.button(button_text_en[1] if st.session_state.translate else button_text_kr[1]):
             st.session_state.selected_image = image_paths[1]
             st.session_state.selected_url = urls[1]
-            st.session_state.selected_detail = details[1]
+            st.session_state.selected_detail = current_details[1]
     
     with col3:
         st.image(image_paths[2], caption=captions_en[2] if st.session_state.translate else captions_kr[2], use_container_width=True)
         if st.button(button_text_en[2] if st.session_state.translate else button_text_kr[2]):
             st.session_state.selected_image = image_paths[2]
             st.session_state.selected_url = urls[2]
-            st.session_state.selected_detail = details[2]
+            st.session_state.selected_detail = current_details[2]
     
     # HTML + CSS 애니메이션 추가
     if st.session_state.selected_image:
