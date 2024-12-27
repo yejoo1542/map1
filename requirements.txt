@@ -5,3 +5,4 @@ streamlit_folium
 streamlit_image_select
 Image
 googletrans==4.0.0-rc1
+beautifulsoup4
