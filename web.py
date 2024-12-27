@@ -9,6 +9,7 @@ from datetime import datetime, timedelta
 import pandas as pd
 import streamlit.components.v1 as components
 import os
+from bs4 import BeautifulSoup
 from PIL import Image
 
 ###### 번역 테스트
@@ -354,8 +355,6 @@ elif st.session_state.current_page == '자전거 위치 정보':
         kakao_directions_url = (f"https://map.kakao.com/link/to/{place['address']},"
                                 f"{place['latitude']},{place['longitude']}")
 
-        # 기존 상태 저장
-        original_translate_state = st.session_state.get("translate", False)
 
                 # HTML 텍스트 번역 함수 정의
         def translate_html_content(html_content, target_language="en"):
