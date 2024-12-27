@@ -385,13 +385,15 @@ elif st.session_state.current_page == '자전거 위치 정보':
                                  f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
                                  f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
             # HTML 텍스트 번역
-            popup_text = translate_html_content(popup_text_korean, target_language="en")
+            popup_text = translate_html_content(popup_text_korean, target_language="en") if st.session_state.translate else popup_text_korean
+
         else:
             popup_text_korean = (f"<div style='font-family:sans-serif; font-size:14px;'>"
                                  f"주소: <a href='{kakao_directions_url}' target='_blank'>{place['address']}</a><br>"
                                  f"<a href='{kakao_directions_url}' target='_blank'>길찾기 (카카오맵)</a></div>")
             # HTML 텍스트 번역
-            popup_text = translate_html_content(popup_text_korean, target_language="en")
+            popup_text = translate_html_content(popup_text_korean, target_language="en") if st.session_state.translate else popup_text_korean
+
 
               
 
